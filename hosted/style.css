@@ -1,0 +1,15 @@
+#domoMessage{
+  display: none;
+}
+
+.form-control{
+  width: auto;
+  margin: auto;
+  margin-left: 5px;
+  display: inline;
+}
+
+.row{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
