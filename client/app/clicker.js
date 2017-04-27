@@ -11,8 +11,8 @@ const renderClickerMain = function() {
     <div>
       <div className="row">
         <div className="well col-xs-offset-1 col-xs-4">
-          <p id="clickNumEle">Clicks Total: 0</p>
-          <p id="dollarCoinEle">Dollar Coin: 0</p>
+          <p id="clickNumEle">Clicks: 0</p>
+          <p id="dollarCoinEle">Coins: 0</p>
         </div>
         <div className="well col-xs-offset-2 col-xs-4">
           <form id="dogoForm"
@@ -39,8 +39,8 @@ const onMainClick = () =>{
   clicks++;
   money++;
 
-  document.querySelector("#clickNumEle").innerHTML = `Clicks Total: ${clicks}`;
-  document.querySelector("#dollarCoinEle").innerHTML = `Dollar Coin: ${money}`;
+  document.querySelector("#clickNumEle").innerHTML = `Clicks: ${clicks}`;
+  document.querySelector("#dollarCoinEle").innerHTML = `Coins: ${money}`;
 };
 
 const clickerSetup = function(csrf) {

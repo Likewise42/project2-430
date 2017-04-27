@@ -21,12 +21,12 @@ var renderClickerMain = function renderClickerMain() {
         React.createElement(
           "p",
           { id: "clickNumEle" },
-          "Clicks Total: 0"
+          "Clicks: 0"
         ),
         React.createElement(
           "p",
           { id: "dollarCoinEle" },
-          "Dollar Coin: 0"
+          "Coins: 0"
         )
       ),
       React.createElement(
@@ -63,8 +63,8 @@ var onMainClick = function onMainClick() {
   clicks++;
   money++;
 
-  document.querySelector("#clickNumEle").innerHTML = "Clicks Total: " + clicks;
-  document.querySelector("#dollarCoinEle").innerHTML = "Dollar Coin: " + money;
+  document.querySelector("#clickNumEle").innerHTML = "Clicks: " + clicks;
+  document.querySelector("#dollarCoinEle").innerHTML = "Coins: " + money;
 };
 
 var clickerSetup = function clickerSetup(csrf) {
