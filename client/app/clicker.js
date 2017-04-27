@@ -10,11 +10,11 @@ const renderClickerMain = function() {
   return(
     <div>
       <div className="row">
-        <div className="well col-xs-5">
+        <div className="well col-xs-offset-1 col-xs-4">
           <p id="clickNumEle">Clicks Total: 0</p>
           <p id="dollarCoinEle">Dollar Coin: 0</p>
         </div>
-        <div className="well col-xs-offset-2 col-xs-5">
+        <div className="well col-xs-offset-2 col-xs-4">
           <form id="dogoForm"
             name="dogoForm"
             onSubmit={this.handleSubmit}
@@ -23,7 +23,7 @@ const renderClickerMain = function() {
             className="dogoForm"
             >
             <input type="hidden" name="_csrf" value={this.props.csrf}/>
-            <input className="btn btn-primary btn-lg btn-block" type="submit" value="Make Dogo" />
+            <input className="btn btn-primary btn-lg btn-block" type="submit" value="Save" />
           </form>
         </div>
       </div>

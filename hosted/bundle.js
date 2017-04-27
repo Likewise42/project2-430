@@ -17,7 +17,7 @@ var renderClickerMain = function renderClickerMain() {
       { className: "row" },
       React.createElement(
         "div",
-        { className: "well col-xs-5" },
+        { className: "well col-xs-offset-1 col-xs-4" },
         React.createElement(
           "p",
           { id: "clickNumEle" },
@@ -31,7 +31,7 @@ var renderClickerMain = function renderClickerMain() {
       ),
       React.createElement(
         "div",
-        { className: "well col-xs-offset-2 col-xs-5" },
+        { className: "well col-xs-offset-2 col-xs-4" },
         React.createElement(
           "form",
           { id: "dogoForm",
@@ -42,7 +42,7 @@ var renderClickerMain = function renderClickerMain() {
             className: "dogoForm"
           },
           React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf }),
-          React.createElement("input", { className: "btn btn-primary btn-lg btn-block", type: "submit", value: "Make Dogo" })
+          React.createElement("input", { className: "btn btn-primary btn-lg btn-block", type: "submit", value: "Save" })
         )
       )
     ),
