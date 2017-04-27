@@ -14,6 +14,8 @@ const router = (app) => {
   app.post('/dogoMaker', mid.requiresLogin, controllers.Dogo.make);
   app.post('/maker', mid.requiresLogin, controllers.Domo.make);
   app.get('/clicker', mid.requiresLogin, controllers.Clicker.clickerPage);
+  app.post('/clicker', mid.requiresLogin, controllers.Account.updateValues);
+  app.post('/updatePass', mid.requiresLogin, controllers.Account.updatePass);
   app.get('/', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
 };
 

@@ -5,8 +5,12 @@ var clickerMain = void 0;
 var ClickerMainClass = void 0;
 
 //clicker attributes:
-var money = 0;
-var clicks = 0;
+var playerValues = {};
+playerValues.money = 0;
+playerValues.clicks = 0;
+playerValues.autoClickers = 0;
+playerValues.autoClickers10 = 0;
+playerValues.autoClickers100 = 0;
 
 var renderClickerMain = function renderClickerMain() {
   return React.createElement(
@@ -34,13 +38,14 @@ var renderClickerMain = function renderClickerMain() {
         { className: "well col-xs-offset-2 col-xs-4" },
         React.createElement(
           "form",
-          { id: "dogoForm",
-            name: "dogoForm",
+          { id: "saveForm",
+            name: "saveForm",
             onSubmit: this.handleSubmit,
-            action: "/dogoMaker",
+            action: "/clicker",
             method: "POST",
-            className: "dogoForm"
+            className: "saveForm"
           },
+          React.createElement("input", { id: "playerValuesForm", type: "hidden", name: "playerValues" }),
           React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf }),
           React.createElement("input", { className: "btn btn-primary btn-lg btn-block", type: "submit", value: "Save" })
         )
@@ -54,17 +59,90 @@ var renderClickerMain = function renderClickerMain() {
         { type: "button", id: "mainButton", className: "btn btn-primary btn-lg btn-block" },
         "Click me!"
       )
+    ),
+    React.createElement(
+      "div",
+      { className: "well well-lg" },
+      React.createElement(
+        "form",
+        { id: "updateForm",
+          name: "updateForm",
+          onSubmit: this.handlePassSubmit,
+          action: "/updatePass",
+          method: "POST",
+          className: "updateForm"
+        },
+        React.createElement(
+          "div",
+          { className: "row" },
+          React.createElement(
+            "label",
+            { htmlFor: "username" },
+            "Username: "
+          ),
+          React.createElement("input", { id: "user", className: "form-control", type: "text", name: "username", placeholder: "Username" })
+        ),
+        React.createElement(
+          "div",
+          { className: "row" },
+          React.createElement(
+            "label",
+            { htmlFor: "cPass" },
+            "Current Password: "
+          ),
+          React.createElement("input", { id: "cPass", className: "form-control", type: "password", name: "cPass", placeholder: "Current Password" })
+        ),
+        React.createElement(
+          "div",
+          { className: "row" },
+          React.createElement(
+            "label",
+            { htmlFor: "pass" },
+            "New Password: "
+          ),
+          React.createElement("input", { id: "pass", className: "form-control", type: "password", name: "pass", placeholder: "Password" })
+        ),
+        React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf }),
+        React.createElement("input", { className: "btn btn-primary btn-lg", type: "submit", value: "Save" })
+      )
     )
   );
+
+  //  <div className="row">
+  //    <label htmlFor="pass2">New Password: </label>
+  //    <input id="pass2" className="form-control" type="password" name="pass2" placeholder="Retype Password"/>
+  //  </div>
 };
 
 var onMainClick = function onMainClick() {
   console.log("click");
-  clicks++;
-  money++;
+  playerValues.clicks++;
+  playerValues.money++;
 
-  document.querySelector("#clickNumEle").innerHTML = "Clicks: " + clicks;
-  document.querySelector("#dollarCoinEle").innerHTML = "Coins: " + money;
+  document.querySelector("#clickNumEle").innerHTML = "Clicks: " + playerValues.clicks;
+  document.querySelector("#dollarCoinEle").innerHTML = "Coins: " + playerValues.money;
+
+  document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
+};
+
+var handleSave = function handleSave(e) {
+  e.preventDefault();
+
+  sendAjax('POST', $("#saveForm").attr("action"), $("#saveForm").serialize(), function () {
+    console.log("Save Successful!");
+  });
+
+  return false;
+};
+
+var handlePassUpdate = function handlePassUpdate(e) {
+  e.preventDefault();
+
+  sendAjax('POST', $("#updateForm").attr("action"), $("#updateForm").serialize(), function () {
+    console.log("Update Successful!");
+  });
+
+  return false;
 };
 
 var clickerSetup = function clickerSetup(csrf) {
@@ -73,11 +151,12 @@ var clickerSetup = function clickerSetup(csrf) {
   ClickerMainClass = React.createClass({
     displayName: "ClickerMainClass",
 
-    handleSubmit: handleDogo,
+    handleSubmit: handleSave,
+    handlePassSubmit: handlePassUpdate,
     render: renderClickerMain
   });
 
-  clickerMain = ReactDOM.render(React.createElement(ClickerMainClass, null), document.querySelector("#mainClicker"));
+  clickerMain = ReactDOM.render(React.createElement(ClickerMainClass, { csrf: csrf }), document.querySelector("#mainClicker"));
 
   document.querySelector("#mainButton").onclick = onMainClick;
 };
