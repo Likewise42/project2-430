@@ -30,7 +30,6 @@ const renderDogo = function() {
       className="dogoForm"
       >
       
-
       <label htmlFor="name">Name: </label>
       <input id="dogoName" type="text" name="name" placeholder ="Dogo Name"/>
       <label htmlFor="breed"> Breed: </label>

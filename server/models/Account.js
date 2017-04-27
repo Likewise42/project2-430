@@ -24,6 +24,36 @@ const AccountSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  clicks: {
+    type: Number,
+    min: 0,
+    required: true,
+    default: 0,
+  },
+  money: {
+    type: Number,
+    min: 0,
+    required: true,
+    default: 0,
+  },
+  autoClickers: {
+    type: Number,
+    min: 0,
+    required: true,
+    default: 0,
+  },
+  autoClickers10: {
+    type: Number,
+    min: 0,
+    required: true,
+    default: 0,
+  },
+  autoClickers100: {
+    type: Number,
+    min: 0,
+    required: true,
+    default: 0,
+  },
   createdDate: {
     type: Date,
     default: Date.now,

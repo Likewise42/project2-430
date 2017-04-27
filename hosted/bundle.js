@@ -1,5 +1,102 @@
 "use strict";
 
+var clickerRenderer = void 0;
+var clickerMain = void 0;
+var ClickerMainClass = void 0;
+
+//clicker attributes:
+var money = 0;
+var clicks = 0;
+
+var renderClickerMain = function renderClickerMain() {
+  return React.createElement(
+    "div",
+    null,
+    React.createElement(
+      "div",
+      { className: "row" },
+      React.createElement(
+        "div",
+        { className: "well col-xs-5" },
+        React.createElement(
+          "p",
+          { id: "clickNumEle" },
+          "Clicks Total: 0"
+        ),
+        React.createElement(
+          "p",
+          { id: "dollarCoinEle" },
+          "Dollar Coin: 0"
+        )
+      ),
+      React.createElement(
+        "div",
+        { className: "well col-xs-offset-2 col-xs-5" },
+        React.createElement(
+          "form",
+          { id: "dogoForm",
+            name: "dogoForm",
+            onSubmit: this.handleSubmit,
+            action: "/dogoMaker",
+            method: "POST",
+            className: "dogoForm"
+          },
+          React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf }),
+          React.createElement("input", { className: "btn btn-primary btn-lg btn-block", type: "submit", value: "Make Dogo" })
+        )
+      )
+    ),
+    React.createElement(
+      "div",
+      { className: "well well-lg" },
+      React.createElement(
+        "button",
+        { type: "button", id: "mainButton", className: "btn btn-primary btn-lg btn-block" },
+        "Click me!"
+      )
+    )
+  );
+};
+
+var onMainClick = function onMainClick() {
+  console.log("click");
+  clicks++;
+  money++;
+
+  document.querySelector("#clickNumEle").innerHTML = "Clicks Total: " + clicks;
+  document.querySelector("#dollarCoinEle").innerHTML = "Dollar Coin: " + money;
+};
+
+var clickerSetup = function clickerSetup(csrf) {
+  console.log("in clicker setup");
+
+  ClickerMainClass = React.createClass({
+    displayName: "ClickerMainClass",
+
+    handleSubmit: handleDogo,
+    render: renderClickerMain
+  });
+
+  clickerMain = ReactDOM.render(React.createElement(ClickerMainClass, null), document.querySelector("#mainClicker"));
+
+  document.querySelector("#mainButton").onclick = onMainClick;
+};
+
+var clickerGetToken = function clickerGetToken() {
+  console.log("in clicker get token");
+
+  sendAjax('GET', '/getToken', null, function (result) {
+    clickerSetup(result.csrfToken);
+  });
+};
+
+$(document).ready(function () {
+  console.log("in clicker ready");
+
+  clickerGetToken();
+});
+"use strict";
+
 var dogoRenderer = void 0;
 var dogoForm = void 0;
 var DogoFormClass = void 0;

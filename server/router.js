@@ -13,6 +13,7 @@ const router = (app) => {
   app.get('/maker', mid.requiresLogin, controllers.Domo.makerPage);
   app.post('/dogoMaker', mid.requiresLogin, controllers.Dogo.make);
   app.post('/maker', mid.requiresLogin, controllers.Domo.make);
+  app.get('/clicker', mid.requiresLogin, controllers.Clicker.clickerPage);
   app.get('/', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
 };
 
