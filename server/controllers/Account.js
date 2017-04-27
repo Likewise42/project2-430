@@ -81,7 +81,7 @@ const signup = (request, response) => {
   });
 };
 
-const updateValues = (request, response) =>{
+const updateValues = (request, response) => {
   const req = request;
   const res = response;
 
@@ -108,18 +108,17 @@ const updateValues = (request, response) =>{
 
     savePromise.then(() => res.json({
       clicks: newAccount.clicks,
-      money : playerValues.money,
-      autoClickers : playerValues.autoClickers,
-      autoClickers10 : playerValues.autoClickers10,
-      autoClickers100 : playerValues.autoClickers100,
+      money: playerValues.money,
+      autoClickers: playerValues.autoClickers,
+      autoClickers10: playerValues.autoClickers10,
+      autoClickers100: playerValues.autoClickers100,
     }));
 
-    savePromise.catch((err) =>{
-      res.json(err);
+    savePromise.catch((sErr) => {
+      res.json(sErr);
     });
 
     return res.json({ redirect: '/clicker' });
-
   });
 };
 
@@ -148,8 +147,8 @@ const updatePass = (request, response) => {
         password: newAccount.password,
       }));
 
-      savePromise.catch((err) =>{
-        res.json(err);
+      savePromise.catch((sErr) => {
+        res.json(sErr);
       });
 
       return res.json({ redirect: '/clicker' });
@@ -177,7 +176,7 @@ const getBaseStats = (request, response) => {
   };
 
   res.json(returnJSON);
-  
+
 //  return Dogo.DogoModel.findByOwner(req.session.account._id, (err, docs) => {
 //    if (err) {
 //      console.log(err);
