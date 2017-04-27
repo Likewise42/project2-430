@@ -26,6 +26,14 @@ const renderClickerMain = function() {
             method="POST"
             className="saveForm"
             >
+            <div className="row">
+              <label htmlFor="username">Username: </label>
+              <input id="user" className="form-control" type="text" name="username" placeholder ="Username"/>
+            </div>
+            <div className="row">
+              <label htmlFor="pass">Password: </label>
+              <input id="pass" className="form-control" type="password" name="pass" placeholder="Password"/>
+            </div>
             <input id="playerValuesForm" type="hidden" name="playerValues"/>
             <input type="hidden" name="_csrf" value={this.props.csrf}/>
             <input className="btn btn-primary btn-lg btn-block" type="submit" value="Save" />
@@ -61,16 +69,16 @@ const renderClickerMain = function() {
 
 
           <input type="hidden" name="_csrf" value={this.props.csrf}/>
-          <input className="btn btn-primary btn-lg" type="submit" value="Save" />
+          <input className="btn btn-primary btn-lg" type="submit" value="Update Password" />
         </form>
       </div>
     </div>
   );
 
-//  <div className="row">
-//    <label htmlFor="pass2">New Password: </label>
-//    <input id="pass2" className="form-control" type="password" name="pass2" placeholder="Retype Password"/>
-//  </div>
+  //  <div className="row">
+  //    <label htmlFor="pass2">New Password: </label>
+  //    <input id="pass2" className="form-control" type="password" name="pass2" placeholder="Retype Password"/>
+  //  </div>
 };
 
 const onMainClick = () =>{
@@ -111,6 +119,15 @@ const clickerSetup = function(csrf) {
     handleSubmit: handleSave,
     handlePassSubmit: handlePassUpdate,
     render: renderClickerMain,
+    loadBaseStats: function(){
+      sendAjax('GET', '/getBaseStats', null, function(data){
+        console.log("Base Stats: ");
+        console.dir(data);
+      }.bind(this));
+    },
+    componentDidMount: function(){
+      this.loadBaseStats();
+    }
   });
 
   clickerMain = ReactDOM.render(

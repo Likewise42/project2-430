@@ -45,6 +45,26 @@ var renderClickerMain = function renderClickerMain() {
             method: "POST",
             className: "saveForm"
           },
+          React.createElement(
+            "div",
+            { className: "row" },
+            React.createElement(
+              "label",
+              { htmlFor: "username" },
+              "Username: "
+            ),
+            React.createElement("input", { id: "user", className: "form-control", type: "text", name: "username", placeholder: "Username" })
+          ),
+          React.createElement(
+            "div",
+            { className: "row" },
+            React.createElement(
+              "label",
+              { htmlFor: "pass" },
+              "Password: "
+            ),
+            React.createElement("input", { id: "pass", className: "form-control", type: "password", name: "pass", placeholder: "Password" })
+          ),
           React.createElement("input", { id: "playerValuesForm", type: "hidden", name: "playerValues" }),
           React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf }),
           React.createElement("input", { className: "btn btn-primary btn-lg btn-block", type: "submit", value: "Save" })
@@ -103,7 +123,7 @@ var renderClickerMain = function renderClickerMain() {
           React.createElement("input", { id: "pass", className: "form-control", type: "password", name: "pass", placeholder: "Password" })
         ),
         React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf }),
-        React.createElement("input", { className: "btn btn-primary btn-lg", type: "submit", value: "Save" })
+        React.createElement("input", { className: "btn btn-primary btn-lg", type: "submit", value: "Update Password" })
       )
     )
   );
@@ -153,7 +173,16 @@ var clickerSetup = function clickerSetup(csrf) {
 
     handleSubmit: handleSave,
     handlePassSubmit: handlePassUpdate,
-    render: renderClickerMain
+    render: renderClickerMain,
+    loadBaseStats: function loadBaseStats() {
+      sendAjax('GET', '/getBaseStats', null, function (data) {
+        console.log("Base Stats: ");
+        console.dir(data);
+      }.bind(this));
+    },
+    componentDidMount: function componentDidMount() {
+      this.loadBaseStats();
+    }
   });
 
   clickerMain = ReactDOM.render(React.createElement(ClickerMainClass, { csrf: csrf }), document.querySelector("#mainClicker"));

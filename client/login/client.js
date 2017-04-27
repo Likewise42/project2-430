@@ -93,6 +93,7 @@ const renderSignup = function() {
         <input type="hidden" name="_csrf" value={this.props.csrf}/>
         <input className="formSubmit btn btn-default" type="submit" value="Sign in" />
         
+        
 
       </form>
     </div>

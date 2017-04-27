@@ -81,8 +81,46 @@ const signup = (request, response) => {
   });
 };
 
-const updateValues = () =>{
+const updateValues = (request, response) =>{
+  const req = request;
+  const res = response;
 
+  const username = `${req.body.username}`;
+  const password = `${req.body.pass}`;
+  let playerValues = `${req.body.playerValues}`;
+  console.dir(playerValues);
+  playerValues = JSON.parse(playerValues);
+
+  return Account.AccountModel.authenticate(username, password, (err, account) => {
+    if (err || !account) {
+      return res.status(401).json({ error: 'Wrong username or password' });
+    }
+
+    const newAccount = account;
+
+    newAccount.clicks = playerValues.clicks;
+    newAccount.money = playerValues.money;
+    newAccount.autoClickers = playerValues.autoClickers;
+    newAccount.autoClickers10 = playerValues.autoClickers10;
+    newAccount.autoClickers100 = playerValues.autoClickers100;
+
+    const savePromise = newAccount.save();
+
+    savePromise.then(() => res.json({
+      clicks: newAccount.clicks,
+      money : playerValues.money,
+      autoClickers : playerValues.autoClickers,
+      autoClickers10 : playerValues.autoClickers10,
+      autoClickers100 : playerValues.autoClickers100,
+    }));
+
+    savePromise.catch((err) =>{
+      res.json(err);
+    });
+
+    return res.json({ redirect: '/clicker' });
+
+  });
 };
 
 const updatePass = (request, response) => {
@@ -130,10 +168,31 @@ const getToken = (request, response) => {
   res.json(csrfJSON);
 };
 
+const getBaseStats = (request, response) => {
+  const req = request;
+  const res = response;
+
+  const returnJSON = {
+    csrfToken: req.csrfToken(),
+  };
+
+  res.json(returnJSON);
+  
+//  return Dogo.DogoModel.findByOwner(req.session.account._id, (err, docs) => {
+//    if (err) {
+//      console.log(err);
+//      return res.status(400).json({ error: 'an Error occured' });
+//    }
+//
+//    return res.json({ dogos: docs });
+//  });
+};
+
 module.exports.loginPage = loginPage;
 module.exports.login = login;
 module.exports.logout = logout;
 module.exports.signup = signup;
 module.exports.getToken = getToken;
+module.exports.getBaseStats = getBaseStats;
 module.exports.updatePass = updatePass;
 module.exports.updateValues = updateValues;
