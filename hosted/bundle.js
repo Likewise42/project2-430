@@ -587,7 +587,19 @@ var renderAboutMain = function renderAboutMain() {
 		React.createElement(
 			"p",
 			null,
-			"thisw is a cookie clicker thing a ma booper that i made to show thta i can code ofr a sproject and this is filler text that i can wrrite so i see hot the page handles text. thisw is a cookie clicker thing a ma booper that i made to show thta i can code ofr a sproject and this is filler text that i can wrrite so i see hot the page handles text. thisw is a cookie clicker thing a ma booper that i made to show thta i can code ofr a sproject and this is filler text that i can wrrite so i see hot the page handles text.thisw is a cookie clicker thing a ma booper that i made to show thta i can code ofr a sproject and this is filler text that i can wrrite so i see hot the page handles text."
+			"This cookie-clicker inspired application is an excercise in storing and retrieving data from a Mongo database using Mongoose. The story of the game is that you found a button on the moon that when clicked gives you 1 Dollar Coin",
+			React.createElement(
+				"sup",
+				null,
+				"TM"
+			),
+			". So you must hire Moonlings to click the button for you. Thankfully for you there are nearly infintie Moonlings, and they are all eager to work for you for a small sum of 100 Dollar Coins",
+			React.createElement(
+				"sup",
+				null,
+				"TM"
+			),
+			"."
 		),
 		React.createElement(
 			"address",
@@ -595,7 +607,7 @@ var renderAboutMain = function renderAboutMain() {
 			React.createElement(
 				"strong",
 				null,
-				"Ryan Muskopf"
+				"Made by Ryan Muskopf"
 			),
 			React.createElement("br", null),
 			React.createElement(

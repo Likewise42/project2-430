@@ -9,7 +9,7 @@
   display: inline;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 767px) {
   .form-control{
     width: 100%;
   }

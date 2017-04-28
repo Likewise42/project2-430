@@ -20,9 +20,9 @@ const renderAboutMain = function() {
 	return(
 		<div className="well well-lg">
 			<h1>About</h1>
-			<p>thisw is a cookie clicker thing a ma booper that i made to show thta i can code ofr a sproject and this is filler text that i can wrrite so i see hot the page handles text. thisw is a cookie clicker thing a ma booper that i made to show thta i can code ofr a sproject and this is filler text that i can wrrite so i see hot the page handles text. thisw is a cookie clicker thing a ma booper that i made to show thta i can code ofr a sproject and this is filler text that i can wrrite so i see hot the page handles text.thisw is a cookie clicker thing a ma booper that i made to show thta i can code ofr a sproject and this is filler text that i can wrrite so i see hot the page handles text.</p>
+			<p>This cookie-clicker inspired application is an excercise in storing and retrieving data from a Mongo database using Mongoose. The story of the game is that you found a button on the moon that when clicked gives you 1 Dollar Coin<sup>TM</sup>. So you must hire Moonlings to click the button for you. Thankfully for you there are nearly infintie Moonlings, and they are all eager to work for you for a small sum of 100 Dollar Coins<sup>TM</sup>.</p>
 			<address>
-				<strong>Ryan Muskopf</strong><br></br>
+				<strong>Made by Ryan Muskopf</strong><br></br>
 				<a href="mailto:#">ryanjmuskopf@gmail.com</a>
 			</address>
 		</div>
