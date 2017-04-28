@@ -61,6 +61,11 @@ const renderStoreMain = function() {
             <button type="button" id="auto100000000000000000000Button" className="btn btn-primary">Buy 100000000000000000000 Autoclickers!</button>
           </div>
         </div>
+        <div className="row">
+          <div className="col-xs-12">
+            <button type="button" id="doublerButton" className="btn btn-primary">Buy a Doubler Machine</button>
+          </div>
+        </div>
       </div>
       <form id="saveForm"
         name="saveForm"
@@ -81,14 +86,28 @@ const buyAutoClicker = (toBuy) =>{
   const clickerCost = 100;
 
   if((toBuy * clickerCost) > playerValues.money){
-    console.log("Not enough dollar coins");
+    console.log("Not enough dollar coins. Missing "+((toBuy * clickerCost) -playerValues.money));
   } else {
     playerValues.autoClickers += toBuy;
     playerValues.money -= (toBuy * clickerCost);
   }
 
   updateValuesStore();
-}
+};
+
+const buyDoublerMachine = (toBuy) =>{
+
+  const clickerCost = 1000000000000000000000000;
+
+  if((toBuy * clickerCost) > playerValues.money){
+    console.log("Not enough dollar coins. Missing "+((toBuy * clickerCost) -playerValues.money));
+  } else {
+    playerValues.autoClickers10 += toBuy;
+    playerValues.money -= (toBuy * clickerCost);
+  }
+
+  updateValuesStore();
+};
 
 const updateValuesStore = () =>{
   document.querySelector("#coinDisplay").innerHTML = `Dollar Coins: ${playerValues.money}`;
@@ -97,7 +116,7 @@ const updateValuesStore = () =>{
   document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
   
   handleSave();
-}
+};
 
 const storeSetup = function(csrf) {
   console.log("in store setup");
@@ -196,6 +215,12 @@ const storeSetup = function(csrf) {
   if(document.querySelector("#auto100000000000000000000Button")){
     document.querySelector("#auto100000000000000000000Button").onclick = ()=>{
       buyAutoClicker(100000000000000000000);
+    };
+  }
+  
+  if(document.querySelector("#doublerButton")){
+    document.querySelector("#doublerButton").onclick = ()=>{
+      buyDoublerMachine(1);
     };
   }
 

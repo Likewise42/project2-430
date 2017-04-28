@@ -15,15 +15,17 @@ const renderClickerMain = function() {
     <div>
 
       <div className="well row">
-        <p id="clickNumEle" className="col-xs-4">Clicks: 0</p>
-        <p id="dollarCoinEle" className="col-xs-4">Dollar Coins: 0</p>
-        <p id="autoClickersEle" className="col-xs-4">Auto Clickers: 0</p>
+        <p id="clickNumEle" className="col-xs-3">Clicks: 0</p>
+        <p id="dollarCoinEle" className="col-xs-3">Dollar Coins: 0</p>
+        <p id="autoClickersEle" className="col-xs-3">Auto Clickers: 0</p>
+        <p id="doublerMachinesEle" className="col-xs-3">Doubler Machines: 0</p>
+
       </div>
 
       <div className="well well-lg">
         <button type="button" id="mainButton" className="btn btn-primary btn-lg btn-block">Click me!</button>
       </div>
-      
+
       <form id="saveForm"
         name="saveForm"
         onSubmit={this.handleSubmit}
@@ -53,7 +55,16 @@ const onMainClick = () =>{
 const autoClick = () =>{
   playerValues.money += playerValues.autoClickers;
   playerValues.clicks += playerValues.autoClickers;
+
+  updateValues();
+  handleSave();
+};
+
+const doubleMoney = () =>{
+  playerValues.money += playerValues.money;
   
+  console.log("in doubler");
+
   updateValues();
   handleSave();
 };
@@ -62,6 +73,7 @@ const updateValues = () =>{
   document.querySelector("#clickNumEle").innerHTML = `Clicks: ${playerValues.clicks}`;
   document.querySelector("#dollarCoinEle").innerHTML = `Dollar Coins: ${playerValues.money}`;
   document.querySelector("#autoClickersEle").innerHTML = `People harrassing Cody for a Spotify project: ${playerValues.autoClickers}`;
+  document.querySelector("#doublerMachinesEle").innerHTML = `Doubler Machines: ${playerValues.autoClickers10}`;
 
   document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
 }
@@ -108,6 +120,12 @@ const clickerSetup = function(csrf) {
 
       setInterval(()=>{
         autoClick();
+        
+        for(let i = 0; i<playerValues.autoClickers10; i++){
+          console.log("in for loop");
+          doubleMoney();
+        }
+        
       },1000);
     }
   });

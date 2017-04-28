@@ -106,18 +106,23 @@ var renderClickerMain = function renderClickerMain() {
       { className: "well row" },
       React.createElement(
         "p",
-        { id: "clickNumEle", className: "col-xs-4" },
+        { id: "clickNumEle", className: "col-xs-3" },
         "Clicks: 0"
       ),
       React.createElement(
         "p",
-        { id: "dollarCoinEle", className: "col-xs-4" },
+        { id: "dollarCoinEle", className: "col-xs-3" },
         "Dollar Coins: 0"
       ),
       React.createElement(
         "p",
-        { id: "autoClickersEle", className: "col-xs-4" },
+        { id: "autoClickersEle", className: "col-xs-3" },
         "Auto Clickers: 0"
+      ),
+      React.createElement(
+        "p",
+        { id: "doublerMachinesEle", className: "col-xs-3" },
+        "Doubler Machines: 0"
       )
     ),
     React.createElement(
@@ -164,10 +169,20 @@ var autoClick = function autoClick() {
   handleSave();
 };
 
+var doubleMoney = function doubleMoney() {
+  playerValues.money += playerValues.money;
+
+  console.log("in doubler");
+
+  updateValues();
+  handleSave();
+};
+
 var updateValues = function updateValues() {
   document.querySelector("#clickNumEle").innerHTML = "Clicks: " + playerValues.clicks;
   document.querySelector("#dollarCoinEle").innerHTML = "Dollar Coins: " + playerValues.money;
   document.querySelector("#autoClickersEle").innerHTML = "People harrassing Cody for a Spotify project: " + playerValues.autoClickers;
+  document.querySelector("#doublerMachinesEle").innerHTML = "Doubler Machines: " + playerValues.autoClickers10;
 
   document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
 };
@@ -216,6 +231,11 @@ var clickerSetup = function clickerSetup(csrf) {
 
       setInterval(function () {
         autoClick();
+
+        for (var i = 0; i < playerValues.autoClickers10; i++) {
+          console.log("in for loop");
+          doubleMoney();
+        }
       }, 1000);
     }
   });
@@ -731,6 +751,19 @@ var renderStoreMain = function renderStoreMain() {
             "Buy 100000000000000000000 Autoclickers!"
           )
         )
+      ),
+      React.createElement(
+        "div",
+        { className: "row" },
+        React.createElement(
+          "div",
+          { className: "col-xs-12" },
+          React.createElement(
+            "button",
+            { type: "button", id: "doublerButton", className: "btn btn-primary" },
+            "Buy a Doubler Machine"
+          )
+        )
       )
     ),
     React.createElement(
@@ -753,9 +786,23 @@ var buyAutoClicker = function buyAutoClicker(toBuy) {
   var clickerCost = 100;
 
   if (toBuy * clickerCost > playerValues.money) {
-    console.log("Not enough dollar coins");
+    console.log("Not enough dollar coins. Missing " + (toBuy * clickerCost - playerValues.money));
   } else {
     playerValues.autoClickers += toBuy;
+    playerValues.money -= toBuy * clickerCost;
+  }
+
+  updateValuesStore();
+};
+
+var buyDoublerMachine = function buyDoublerMachine(toBuy) {
+
+  var clickerCost = 1000000000000000000000000;
+
+  if (toBuy * clickerCost > playerValues.money) {
+    console.log("Not enough dollar coins. Missing " + (toBuy * clickerCost - playerValues.money));
+  } else {
+    playerValues.autoClickers10 += toBuy;
     playerValues.money -= toBuy * clickerCost;
   }
 
@@ -868,6 +915,12 @@ var storeSetup = function storeSetup(csrf) {
   if (document.querySelector("#auto100000000000000000000Button")) {
     document.querySelector("#auto100000000000000000000Button").onclick = function () {
       buyAutoClicker(100000000000000000000);
+    };
+  }
+
+  if (document.querySelector("#doublerButton")) {
+    document.querySelector("#doublerButton").onclick = function () {
+      buyDoublerMachine(1);
     };
   }
 };
