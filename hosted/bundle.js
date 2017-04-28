@@ -628,7 +628,7 @@ var storeSetup = function storeSetup(csrf) {
 
   if (document.querySelector("#auto100Button")) {
     document.querySelector("#auto100Button").onclick = function () {
-      buyAutoClicker(1);
+      buyAutoClicker(100);
     };
   }
 };

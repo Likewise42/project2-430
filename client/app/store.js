@@ -109,7 +109,7 @@ const storeSetup = function(csrf) {
 
   if(document.querySelector("#auto100Button")){
     document.querySelector("#auto100Button").onclick = ()=>{
-      buyAutoClicker(1);
+      buyAutoClicker(100);
     };
   }
 
