@@ -1,49 +1,13 @@
 "use strict";
 
-var clickerRenderer = void 0;
-var clickerMain = void 0;
-var ClickerMainClass = void 0;
+var changeRenderer = void 0;
+var changeMain = void 0;
+var ChangeMainClass = void 0;
 
-//clicker attributes:
-var playerValues = {};
-playerValues.money = 0;
-playerValues.clicks = 0;
-playerValues.autoClickers = 0;
-playerValues.autoClickers10 = 0;
-playerValues.autoClickers100 = 0;
-
-var renderClickerMain = function renderClickerMain() {
+var renderChangeMain = function renderChangeMain() {
   return React.createElement(
     "div",
     null,
-    React.createElement(
-      "div",
-      { className: "well row" },
-      React.createElement(
-        "p",
-        { id: "clickNumEle", className: "col-xs-4" },
-        "Clicks: 0"
-      ),
-      React.createElement(
-        "p",
-        { id: "dollarCoinEle", className: "col-xs-4" },
-        "Coins: 0"
-      ),
-      React.createElement(
-        "p",
-        { id: "autoClickersEle", className: "col-xs-4" },
-        "Auto Clickers: 0"
-      )
-    ),
-    React.createElement(
-      "div",
-      { className: "well well-lg" },
-      React.createElement(
-        "button",
-        { type: "button", id: "mainButton", className: "btn btn-primary btn-lg btn-block" },
-        "Click me!"
-      )
-    ),
     React.createElement(
       "div",
       { className: "well well-lg" },
@@ -88,6 +52,81 @@ var renderClickerMain = function renderClickerMain() {
         ),
         React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf }),
         React.createElement("input", { className: "btn btn-primary btn-lg", type: "submit", value: "Update Password" })
+      )
+    )
+  );
+};
+
+var changeSetup = function changeSetup(csrf) {
+  console.log("in change setup");
+
+  ChangeMainClass = React.createClass({
+    displayName: "ChangeMainClass",
+
+    render: renderChangeMain,
+    handlePassSubmit: handlePassUpdate
+  });
+
+  changeMain = ReactDOM.render(React.createElement(ChangeMainClass, { csrf: csrf }), document.querySelector("#mainChange"));
+};
+
+var changeGetToken = function changeGetToken() {
+  console.log("in change get token");
+
+  sendAjax('GET', '/getToken', null, function (result) {
+    changeSetup(result.csrfToken);
+  });
+};
+
+$(document).ready(function () {
+  console.log("in change ready");
+
+  changeGetToken();
+});
+"use strict";
+
+var clickerRenderer = void 0;
+var clickerMain = void 0;
+var ClickerMainClass = void 0;
+
+//clicker attributes:
+var playerValues = {};
+playerValues.money = 0;
+playerValues.clicks = 0;
+playerValues.autoClickers = 0;
+playerValues.autoClickers10 = 0;
+playerValues.autoClickers100 = 0;
+
+var renderClickerMain = function renderClickerMain() {
+  return React.createElement(
+    "div",
+    null,
+    React.createElement(
+      "div",
+      { className: "well row" },
+      React.createElement(
+        "p",
+        { id: "clickNumEle", className: "col-xs-4" },
+        "Clicks: 0"
+      ),
+      React.createElement(
+        "p",
+        { id: "dollarCoinEle", className: "col-xs-4" },
+        "Coins: 0"
+      ),
+      React.createElement(
+        "p",
+        { id: "autoClickersEle", className: "col-xs-4" },
+        "Auto Clickers: 0"
+      )
+    ),
+    React.createElement(
+      "div",
+      { className: "well well-lg" },
+      React.createElement(
+        "button",
+        { type: "button", id: "mainButton", className: "btn btn-primary btn-lg btn-block" },
+        "Click me!"
       )
     ),
     React.createElement(
