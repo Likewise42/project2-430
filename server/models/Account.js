@@ -8,6 +8,8 @@ const iterations = 10000;
 const saltLength = 64;
 const keyLength = 64;
 
+const convertId = mongoose.Types.ObjectId;
+
 const AccountSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -85,6 +87,16 @@ AccountSchema.statics.findByUsername = (name, callback) => {
   return AccountModel.findOne(search, callback);
 };
 
+AccountSchema.statics.findByID = (id, callback) => {
+  console.dir(convertId(id));
+
+  const search = {
+    _id: convertId(id),
+  };
+
+  return AccountModel.findOne(search, callback);
+};
+
 AccountSchema.statics.generateHash = (password, callback) => {
   const salt = crypto.randomBytes(saltLength);
 
@@ -110,6 +122,21 @@ AccountModel.findByUsername(username, (err, doc) => {
 
     return callback();
   });
+});
+
+AccountSchema.statics.authenticateID = (id, callback) =>
+AccountModel.findByID(id, (err, doc) => {
+  if (err) {
+    return callback(err);
+  }
+
+  if (!doc) {
+    return callback();
+  }
+
+  console.dir(doc);
+  
+  return callback(null, doc);
 });
 
 AccountModel = mongoose.model('Account', AccountSchema);

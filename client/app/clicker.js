@@ -26,14 +26,6 @@ const renderClickerMain = function() {
             method="POST"
             className="saveForm"
             >
-            <div className="row">
-              <label htmlFor="username">Username: </label>
-              <input id="user" className="form-control" type="text" name="username" placeholder ="Username"/>
-            </div>
-            <div className="row">
-              <label htmlFor="pass">Password: </label>
-              <input id="pass" className="form-control" type="password" name="pass" placeholder="Password"/>
-            </div>
             <input id="playerValuesForm" type="hidden" name="playerValues"/>
             <input type="hidden" name="_csrf" value={this.props.csrf}/>
             <input className="btn btn-primary btn-lg btn-block" type="submit" value="Save" />
@@ -86,11 +78,17 @@ const onMainClick = () =>{
   playerValues.clicks++;
   playerValues.money++;
 
+  updateValues();
+  
+  
+};
+
+const updateValues = () =>{
   document.querySelector("#clickNumEle").innerHTML = `Clicks: ${playerValues.clicks}`;
   document.querySelector("#dollarCoinEle").innerHTML = `Coins: ${playerValues.money}`;
 
   document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
-};
+}
 
 const handleSave = (e) =>{
   e.preventDefault();
@@ -123,6 +121,14 @@ const clickerSetup = function(csrf) {
       sendAjax('GET', '/getBaseStats', null, function(data){
         console.log("Base Stats: ");
         console.dir(data);
+        
+        playerValues.clicks = data.clicks;
+        playerValues.money = data.money;
+        playerValues.autoClickers = data.autoClickers;
+        playerValues.autoClickers10 = data.autoClickers10;
+        playerValues.autoClickers100 = data.autoClickers100;
+        
+        updateValues();
       }.bind(this));
     },
     componentDidMount: function(){

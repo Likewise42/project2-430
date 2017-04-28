@@ -85,15 +85,15 @@ const updateValues = (request, response) => {
   const req = request;
   const res = response;
 
-  const username = `${req.body.username}`;
-  const password = `${req.body.pass}`;
   let playerValues = `${req.body.playerValues}`;
   console.dir(playerValues);
   playerValues = JSON.parse(playerValues);
 
-  return Account.AccountModel.authenticate(username, password, (err, account) => {
+  return Account.AccountModel.authenticateID(req.session.account._id, (err, account) => {
+    console.dir(account);
+
     if (err || !account) {
-      return res.status(401).json({ error: 'Wrong username or password' });
+      return res.status(401).json({ error: 'Wrong id' });
     }
 
     const newAccount = account;
@@ -115,11 +115,42 @@ const updateValues = (request, response) => {
     }));
 
     savePromise.catch((sErr) => {
+      console.dir(sErr);
       res.json(sErr);
     });
 
     return res.json({ redirect: '/clicker' });
   });
+
+  //  return Account.AccountModel.authenticate(username, password, (err, account) => {
+  //    if (err || !account) {
+  //      return res.status(401).json({ error: 'Wrong username or password' });
+  //    }
+  //
+  //    const newAccount = account;
+  //
+  //    newAccount.clicks = playerValues.clicks;
+  //    newAccount.money = playerValues.money;
+  //    newAccount.autoClickers = playerValues.autoClickers;
+  //    newAccount.autoClickers10 = playerValues.autoClickers10;
+  //    newAccount.autoClickers100 = playerValues.autoClickers100;
+  //
+  //    const savePromise = newAccount.save();
+  //
+  //    savePromise.then(() => res.json({
+  //      clicks: newAccount.clicks,
+  //      money: playerValues.money,
+  //      autoClickers: playerValues.autoClickers,
+  //      autoClickers10: playerValues.autoClickers10,
+  //      autoClickers100: playerValues.autoClickers100,
+  //    }));
+  //
+  //    savePromise.catch((sErr) => {
+  //      res.json(sErr);
+  //    });
+  //
+  //    return res.json({ redirect: '/clicker' });
+  //  });
 };
 
 const updatePass = (request, response) => {
@@ -171,20 +202,33 @@ const getBaseStats = (request, response) => {
   const req = request;
   const res = response;
 
-  const returnJSON = {
-    csrfToken: req.csrfToken(),
-  };
+  return Account.AccountModel.authenticateID(req.session.account._id, (err, account) => {
+    console.dir(account);
 
-  res.json(returnJSON);
+    if (err || !account) {
+      return res.status(401).json({ error: 'Wrong id' });
+    }
 
-//  return Dogo.DogoModel.findByOwner(req.session.account._id, (err, docs) => {
-//    if (err) {
-//      console.log(err);
-//      return res.status(400).json({ error: 'an Error occured' });
-//    }
-//
-//    return res.json({ dogos: docs });
-//  });
+    const returnJSON = {
+      clicks : account.clicks,
+      money : account.money,
+      autoClickers : account.autoClickers,
+      autoClickers10 : account.autoClickers10,
+      autoClickers100 : account.autoClickers100,
+    };
+
+    return res.json(returnJSON);
+  });
+
+
+  //  return Dogo.DogoModel.findByOwner(req.session.account._id, (err, docs) => {
+  //    if (err) {
+  //      console.log(err);
+  //      return res.status(400).json({ error: 'an Error occured' });
+  //    }
+  //
+  //    return res.json({ dogos: docs });
+  //  });
 };
 
 module.exports.loginPage = loginPage;

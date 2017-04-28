@@ -45,26 +45,6 @@ var renderClickerMain = function renderClickerMain() {
             method: "POST",
             className: "saveForm"
           },
-          React.createElement(
-            "div",
-            { className: "row" },
-            React.createElement(
-              "label",
-              { htmlFor: "username" },
-              "Username: "
-            ),
-            React.createElement("input", { id: "user", className: "form-control", type: "text", name: "username", placeholder: "Username" })
-          ),
-          React.createElement(
-            "div",
-            { className: "row" },
-            React.createElement(
-              "label",
-              { htmlFor: "pass" },
-              "Password: "
-            ),
-            React.createElement("input", { id: "pass", className: "form-control", type: "password", name: "pass", placeholder: "Password" })
-          ),
           React.createElement("input", { id: "playerValuesForm", type: "hidden", name: "playerValues" }),
           React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf }),
           React.createElement("input", { className: "btn btn-primary btn-lg btn-block", type: "submit", value: "Save" })
@@ -139,6 +119,10 @@ var onMainClick = function onMainClick() {
   playerValues.clicks++;
   playerValues.money++;
 
+  updateValues();
+};
+
+var updateValues = function updateValues() {
   document.querySelector("#clickNumEle").innerHTML = "Clicks: " + playerValues.clicks;
   document.querySelector("#dollarCoinEle").innerHTML = "Coins: " + playerValues.money;
 
@@ -178,6 +162,14 @@ var clickerSetup = function clickerSetup(csrf) {
       sendAjax('GET', '/getBaseStats', null, function (data) {
         console.log("Base Stats: ");
         console.dir(data);
+
+        playerValues.clicks = data.clicks;
+        playerValues.money = data.money;
+        playerValues.autoClickers = data.autoClickers;
+        playerValues.autoClickers10 = data.autoClickers10;
+        playerValues.autoClickers100 = data.autoClickers100;
+
+        updateValues();
       }.bind(this));
     },
     componentDidMount: function componentDidMount() {
