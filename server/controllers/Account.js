@@ -210,11 +210,11 @@ const getBaseStats = (request, response) => {
     }
 
     const returnJSON = {
-      clicks : account.clicks,
-      money : account.money,
-      autoClickers : account.autoClickers,
-      autoClickers10 : account.autoClickers10,
-      autoClickers100 : account.autoClickers100,
+      clicks: account.clicks,
+      money: account.money,
+      autoClickers: account.autoClickers,
+      autoClickers10: account.autoClickers10,
+      autoClickers100: account.autoClickers100,
     };
 
     return res.json(returnJSON);

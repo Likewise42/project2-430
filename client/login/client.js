@@ -40,6 +40,7 @@ const handleSignup = (e) => {
 const renderLogin = function() {
   return(
     <div className="well">
+      <h1>Login</h1>
       <form id="loginForm" 
         name="loginForm"
         onSubmit={this.handleSubmit}
@@ -61,6 +62,7 @@ const renderLogin = function() {
         <input className="formSubmit btn btn-default" type="submit" value="Sign in" />
 
       </form>
+      <a id="signupLink" href="/signup">Create an account!</a>
     </div>
   );
 };
@@ -68,6 +70,7 @@ const renderLogin = function() {
 const renderSignup = function() {
   return(
     <div className="well">
+      <h1>Creat an Account</h1>
       <form id="signupForm"
         name="signupForm"
         onSubmit={this.handleSubmit}
@@ -79,12 +82,12 @@ const renderSignup = function() {
           <label htmlFor="username">Username: </label>
           <input id="user" className="form-control" type="text" name="username" placeholder ="Username"/>
         </div>
-        
+
         <div className="row">
           <label htmlFor="pass"> Password: </label>
           <input id="pass" className="form-control" type="password" name="pass" placeholder="Password"/>
         </div>
-        
+
         <div className="row">
           <label htmlFor="pass2"> Password: </label>
           <input id="pass2" className="form-control" type="password" name="pass2" placeholder="Retype Password"/>
@@ -92,20 +95,20 @@ const renderSignup = function() {
 
         <input type="hidden" name="_csrf" value={this.props.csrf}/>
         <input className="formSubmit btn btn-default" type="submit" value="Sign in" />
-        
-        
-
       </form>
+
+      <a id="loginLink" href="/signup">Already have an account? Sign in!</a>
+
     </div>
   );
-//  <label htmlFor="username">Username: </label>
-//        <input id="user" type="text" name="username" placeholder ="username"/>
-//        <label htmlFor="pass"> Password: </label>
-//        <input id="pass" type="password" name="pass" placeholder="password"/>
-//        <label htmlFor="pass2"> Password: </label>
-//        <input id="pass2" type="password" name="pass2" placeholder="retype password"/>
-//        <input type="hidden" name="_csrf" value={this.props.csrf}/>
-//        <input className="formSubmit" type="submit" value="Sign Up" />
+  //  <label htmlFor="username">Username: </label>
+  //        <input id="user" type="text" name="username" placeholder ="username"/>
+  //        <label htmlFor="pass"> Password: </label>
+  //        <input id="pass" type="password" name="pass" placeholder="password"/>
+  //        <label htmlFor="pass2"> Password: </label>
+  //        <input id="pass2" type="password" name="pass2" placeholder="retype password"/>
+  //        <input type="hidden" name="_csrf" value={this.props.csrf}/>
+  //        <input className="formSubmit" type="submit" value="Sign Up" />
 };
 
 const createLoginWindow = function(csrf) {
@@ -118,6 +121,12 @@ const createLoginWindow = function(csrf) {
     <LoginWindow csrf={csrf} />,
     document.querySelector("#content")
   );
+
+  signupLink.addEventListener("click", (e)=> {
+    e.preventDefault();
+    createSignupWindow(csrf);
+    return false;
+  });
 };
 
 const createSignupWindow = function(csrf) {
@@ -130,11 +139,19 @@ const createSignupWindow = function(csrf) {
     <SignupWindow csrf={csrf} />,
     document.querySelector("#content")
   );
+
+  loginLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    createLoginWindow(csrf);
+    return false;
+  });
 };
 
 const setup = function(csrf){
   const loginButton = document.querySelector("#loginButton");
   const signupButton = document.querySelector("#signupButton");
+  const loginLink = document.querySelector("#loginLink");
+  const signupLink = document.querySelector("#signupLink");
 
   signupButton.addEventListener("click", (e)=> {
     e.preventDefault();

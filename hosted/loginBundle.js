@@ -44,6 +44,11 @@ var renderLogin = function renderLogin() {
     "div",
     { className: "well" },
     React.createElement(
+      "h1",
+      null,
+      "Login"
+    ),
+    React.createElement(
       "form",
       { id: "loginForm",
         name: "loginForm",
@@ -74,6 +79,11 @@ var renderLogin = function renderLogin() {
       ),
       React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf }),
       React.createElement("input", { className: "formSubmit btn btn-default", type: "submit", value: "Sign in" })
+    ),
+    React.createElement(
+      "a",
+      { id: "signupLink", href: "/signup" },
+      "Create an account!"
     )
   );
 };
@@ -82,6 +92,11 @@ var renderSignup = function renderSignup() {
   return React.createElement(
     "div",
     { className: "well" },
+    React.createElement(
+      "h1",
+      null,
+      "Creat an Account"
+    ),
     React.createElement(
       "form",
       { id: "signupForm",
@@ -123,6 +138,11 @@ var renderSignup = function renderSignup() {
       ),
       React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf }),
       React.createElement("input", { className: "formSubmit btn btn-default", type: "submit", value: "Sign in" })
+    ),
+    React.createElement(
+      "a",
+      { id: "loginLink", href: "/signup" },
+      "Already have an account? Sign in!"
     )
   );
   //  <label htmlFor="username">Username: </label>
@@ -144,6 +164,12 @@ var createLoginWindow = function createLoginWindow(csrf) {
   });
 
   ReactDOM.render(React.createElement(LoginWindow, { csrf: csrf }), document.querySelector("#content"));
+
+  signupLink.addEventListener("click", function (e) {
+    e.preventDefault();
+    createSignupWindow(csrf);
+    return false;
+  });
 };
 
 var createSignupWindow = function createSignupWindow(csrf) {
@@ -155,11 +181,19 @@ var createSignupWindow = function createSignupWindow(csrf) {
   });
 
   ReactDOM.render(React.createElement(SignupWindow, { csrf: csrf }), document.querySelector("#content"));
+
+  loginLink.addEventListener("click", function (e) {
+    e.preventDefault();
+    createLoginWindow(csrf);
+    return false;
+  });
 };
 
 var setup = function setup(csrf) {
   var loginButton = document.querySelector("#loginButton");
   var signupButton = document.querySelector("#signupButton");
+  var loginLink = document.querySelector("#loginLink");
+  var signupLink = document.querySelector("#signupLink");
 
   signupButton.addEventListener("click", function (e) {
     e.preventDefault();
