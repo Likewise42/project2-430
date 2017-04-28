@@ -558,6 +558,10 @@ var spotifyRenderer = void 0;
 var spotifyMain = void 0;
 var SpotifyMainClass = void 0;
 
+var aboutRenderer = void 0;
+var aboutMain = void 0;
+var AboutMainClass = void 0;
+
 var renderSpotifyMain = function renderSpotifyMain() {
 	return React.createElement(
 		"div",
@@ -567,6 +571,38 @@ var renderSpotifyMain = function renderSpotifyMain() {
 			"button",
 			{ type: "button", id: "spotifyButton", className: "btn btn-primary btn-lg btn-block" },
 			"Click Me"
+		)
+	);
+};
+
+var renderAboutMain = function renderAboutMain() {
+	return React.createElement(
+		"div",
+		{ className: "well well-lg" },
+		React.createElement(
+			"h1",
+			null,
+			"About"
+		),
+		React.createElement(
+			"p",
+			null,
+			"thisw is a cookie clicker thing a ma booper that i made to show thta i can code ofr a sproject and this is filler text that i can wrrite so i see hot the page handles text. thisw is a cookie clicker thing a ma booper that i made to show thta i can code ofr a sproject and this is filler text that i can wrrite so i see hot the page handles text. thisw is a cookie clicker thing a ma booper that i made to show thta i can code ofr a sproject and this is filler text that i can wrrite so i see hot the page handles text.thisw is a cookie clicker thing a ma booper that i made to show thta i can code ofr a sproject and this is filler text that i can wrrite so i see hot the page handles text."
+		),
+		React.createElement(
+			"address",
+			null,
+			React.createElement(
+				"strong",
+				null,
+				"Ryan Muskopf"
+			),
+			React.createElement("br", null),
+			React.createElement(
+				"a",
+				{ href: "mailto:#" },
+				"ryanjmuskopf@gmail.com"
+			)
 		)
 	);
 };
@@ -591,6 +627,17 @@ var spotifySetup = function spotifySetup(csrf) {
 		spotifyMain = ReactDOM.render(React.createElement(SpotifyMainClass, { csrf: csrf }), document.querySelector("#mainSpotify"));
 
 		document.querySelector("#spotifyButton").onclick = clickMeme;
+	}
+
+	AboutMainClass = React.createClass({
+		displayName: "AboutMainClass",
+
+		render: renderAboutMain
+	});
+
+	if (document.querySelector("#mainAbout")) {
+
+		aboutMain = ReactDOM.render(React.createElement(AboutMainClass, { csrf: csrf }), document.querySelector("#mainAbout"));
 	}
 };
 

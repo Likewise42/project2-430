@@ -31,7 +31,6 @@ const renderChangeMain = function() {
 						<input id="pass" className="form-control" type="password" name="pass" placeholder="Password"/>
 					</div>
 
-
 					<input type="hidden" name="_csrf" value={this.props.csrf}/>
 					<input className="btn btn-primary btn-lg" type="submit" value="Update Password" />
 				</form>

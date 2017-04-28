@@ -3,19 +3,17 @@
 }
 
 .form-control{
-  width: auto;
+  width: 100%;
   margin: auto;
   margin-left: 5px;
   display: inline;
 }
 
-@media (max-width: 400px) {
-  .form-control{
-    width: 100%;
-  }
-}
-
 .row{
   margin-top: 15px;
   margin-bottom: 15px;
+}
+
+body{
+	background-color: aqua;
 }
