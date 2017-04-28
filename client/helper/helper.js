@@ -1,16 +1,10 @@
 const handleError = (message) =>{
   $('#errorMessage').text(message);
+	
   if($('#domoMessage')){
     $('#domoMessage').animate({width:'toggle'},350);
-    console.log('domoHelp');
+    console.log('error');
   }
-  
-  if($('#dogoMessage')){
-    $('#dogoMessage').animate({width:'toggle'},350);   
-    console.log('dogoHelp');
-
-  }
-
 };
 
 const redirect = (response) =>{
