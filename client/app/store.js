@@ -50,6 +50,17 @@ const renderStoreMain = function() {
             <button type="button" id="auto100000000000000Button" className="btn btn-primary">Buy 100000000000000 Autoclickers!</button>
           </div>
         </div>
+        <div className="row">
+          <div className="col-xs-4">
+            <button type="button" id="auto10000000000000000Button" className="btn btn-primary">Buy 10000000000000000 Autoclicker</button>
+          </div>
+          <div className="col-xs-4">
+            <button type="button" id="auto1000000000000000000Button" className="btn btn-primary">Buy 1000000000000000000 Autoclickers</button>
+          </div>
+          <div className="col-xs-4">
+            <button type="button" id="auto100000000000000000000Button" className="btn btn-primary">Buy 100000000000000000000 Autoclickers!</button>
+          </div>
+        </div>
       </div>
       <form id="saveForm"
         name="saveForm"
@@ -167,6 +178,24 @@ const storeSetup = function(csrf) {
   if(document.querySelector("#auto100000000000000Button")){
     document.querySelector("#auto100000000000000Button").onclick = ()=>{
       buyAutoClicker(100000000000000);
+    };
+  }
+  
+  if(document.querySelector("#auto10000000000000000Button")){
+    document.querySelector("#auto10000000000000000Button").onclick = ()=>{
+      buyAutoClicker(10000000000000000);
+    };
+  }
+  
+  if(document.querySelector("#auto1000000000000000000Button")){
+    document.querySelector("#auto1000000000000000000Button").onclick = ()=>{
+      buyAutoClicker(1000000000000000000);
+    };
+  }
+  
+  if(document.querySelector("#auto100000000000000000000Button")){
+    document.querySelector("#auto100000000000000000000Button").onclick = ()=>{
+      buyAutoClicker(100000000000000000000);
     };
   }
 

@@ -700,6 +700,37 @@ var renderStoreMain = function renderStoreMain() {
             "Buy 100000000000000 Autoclickers!"
           )
         )
+      ),
+      React.createElement(
+        "div",
+        { className: "row" },
+        React.createElement(
+          "div",
+          { className: "col-xs-4" },
+          React.createElement(
+            "button",
+            { type: "button", id: "auto10000000000000000Button", className: "btn btn-primary" },
+            "Buy 10000000000000000 Autoclicker"
+          )
+        ),
+        React.createElement(
+          "div",
+          { className: "col-xs-4" },
+          React.createElement(
+            "button",
+            { type: "button", id: "auto1000000000000000000Button", className: "btn btn-primary" },
+            "Buy 1000000000000000000 Autoclickers"
+          )
+        ),
+        React.createElement(
+          "div",
+          { className: "col-xs-4" },
+          React.createElement(
+            "button",
+            { type: "button", id: "auto100000000000000000000Button", className: "btn btn-primary" },
+            "Buy 100000000000000000000 Autoclickers!"
+          )
+        )
       )
     ),
     React.createElement(
@@ -819,6 +850,24 @@ var storeSetup = function storeSetup(csrf) {
   if (document.querySelector("#auto100000000000000Button")) {
     document.querySelector("#auto100000000000000Button").onclick = function () {
       buyAutoClicker(100000000000000);
+    };
+  }
+
+  if (document.querySelector("#auto10000000000000000Button")) {
+    document.querySelector("#auto10000000000000000Button").onclick = function () {
+      buyAutoClicker(10000000000000000);
+    };
+  }
+
+  if (document.querySelector("#auto1000000000000000000Button")) {
+    document.querySelector("#auto1000000000000000000Button").onclick = function () {
+      buyAutoClicker(1000000000000000000);
+    };
+  }
+
+  if (document.querySelector("#auto100000000000000000000Button")) {
+    document.querySelector("#auto100000000000000000000Button").onclick = function () {
+      buyAutoClicker(100000000000000000000);
     };
   }
 };
