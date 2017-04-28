@@ -13,10 +13,10 @@ playerValues.autoClickers100 = 0;
 const renderStoreMain = function() {
   return(
     <div>
-      <p id="coinDisplay">Coins: 0</p>
+      <p id="coinDisplay">Dollar Coins: 0</p>
       <div className="well well-lg">
         <h1 id="autoClickers">Auto Clickers: 0</h1>
-        <h4>Auto Clickers cost 100 coins each</h4>
+        <h4>Auto Clickers cost 100 dollar coins each</h4>
         <div className="row">
           <div className="col-xs-4">
             <button type="button" id="auto1Button" className="btn btn-primary">Buy 1 Autoclicker</button>
@@ -61,7 +61,7 @@ const buyAutoClicker = (toBuy) =>{
   const clickerCost = 100;
 
   if((toBuy * clickerCost) > playerValues.money){
-    console.log("Not enough coins");
+    console.log("Not enough dollar coins");
   } else {
     playerValues.autoClickers += toBuy;
     playerValues.money -= (toBuy * clickerCost);
@@ -71,7 +71,7 @@ const buyAutoClicker = (toBuy) =>{
 }
 
 const updateValuesStore = () =>{
-  document.querySelector("#coinDisplay").innerHTML = `Coins: ${playerValues.money}`;
+  document.querySelector("#coinDisplay").innerHTML = `Dollar Coins: ${playerValues.money}`;
   document.querySelector("#autoClickers").innerHTML = `Auto Clickers: ${playerValues.autoClickers}`;
 
   document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);

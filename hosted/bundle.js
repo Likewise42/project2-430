@@ -112,7 +112,7 @@ var renderClickerMain = function renderClickerMain() {
       React.createElement(
         "p",
         { id: "dollarCoinEle", className: "col-xs-4" },
-        "Coins: 0"
+        "Dollar Coins: 0"
       ),
       React.createElement(
         "p",
@@ -166,7 +166,7 @@ var autoClick = function autoClick() {
 
 var updateValues = function updateValues() {
   document.querySelector("#clickNumEle").innerHTML = "Clicks: " + playerValues.clicks;
-  document.querySelector("#dollarCoinEle").innerHTML = "Coins: " + playerValues.money;
+  document.querySelector("#dollarCoinEle").innerHTML = "Dollar Coins: " + playerValues.money;
   document.querySelector("#autoClickersEle").innerHTML = "Auto Clickers: " + playerValues.autoClickers;
 
   document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
@@ -538,7 +538,7 @@ var renderStoreMain = function renderStoreMain() {
     React.createElement(
       "p",
       { id: "coinDisplay" },
-      "Coins: 0"
+      "Dollar Coins: 0"
     ),
     React.createElement(
       "div",
@@ -551,7 +551,7 @@ var renderStoreMain = function renderStoreMain() {
       React.createElement(
         "h4",
         null,
-        "Auto Clickers cost 100 coins each"
+        "Auto Clickers cost 100 dollar coins each"
       ),
       React.createElement(
         "div",
@@ -636,7 +636,7 @@ var buyAutoClicker = function buyAutoClicker(toBuy) {
   var clickerCost = 100;
 
   if (toBuy * clickerCost > playerValues.money) {
-    console.log("Not enough coins");
+    console.log("Not enough dollar coins");
   } else {
     playerValues.autoClickers += toBuy;
     playerValues.money -= toBuy * clickerCost;
@@ -646,7 +646,7 @@ var buyAutoClicker = function buyAutoClicker(toBuy) {
 };
 
 var updateValuesStore = function updateValuesStore() {
-  document.querySelector("#coinDisplay").innerHTML = "Coins: " + playerValues.money;
+  document.querySelector("#coinDisplay").innerHTML = "Dollar Coins: " + playerValues.money;
   document.querySelector("#autoClickers").innerHTML = "Auto Clickers: " + playerValues.autoClickers;
 
   document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
