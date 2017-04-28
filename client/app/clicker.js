@@ -23,6 +23,7 @@ const renderClickerMain = function() {
       <div className="well well-lg">
         <button type="button" id="mainButton" className="btn btn-primary btn-lg btn-block">Click me!</button>
       </div>
+      
       <form id="saveForm"
         name="saveForm"
         onSubmit={this.handleSubmit}
@@ -60,7 +61,7 @@ const autoClick = () =>{
 const updateValues = () =>{
   document.querySelector("#clickNumEle").innerHTML = `Clicks: ${playerValues.clicks}`;
   document.querySelector("#dollarCoinEle").innerHTML = `Dollar Coins: ${playerValues.money}`;
-  document.querySelector("#autoClickersEle").innerHTML = `Auto Clickers: ${playerValues.autoClickers}`;
+  document.querySelector("#autoClickersEle").innerHTML = `People harrassing Cody for a Spotify project: ${playerValues.autoClickers}`;
 
   document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
 }

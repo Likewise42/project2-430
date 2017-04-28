@@ -167,7 +167,7 @@ var autoClick = function autoClick() {
 var updateValues = function updateValues() {
   document.querySelector("#clickNumEle").innerHTML = "Clicks: " + playerValues.clicks;
   document.querySelector("#dollarCoinEle").innerHTML = "Dollar Coins: " + playerValues.money;
-  document.querySelector("#autoClickersEle").innerHTML = "Auto Clickers: " + playerValues.autoClickers;
+  document.querySelector("#autoClickersEle").innerHTML = "People harrassing Cody for a Spotify project: " + playerValues.autoClickers;
 
   document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
 };
@@ -519,6 +519,61 @@ $(document).ready(function () {
 });
 "use strict";
 
+var spotifyRenderer = void 0;
+var spotifyMain = void 0;
+var SpotifyMainClass = void 0;
+
+var renderSpotifyMain = function renderSpotifyMain() {
+  return React.createElement(
+    "div",
+    null,
+    React.createElement("h1", { id: "getMemed" }),
+    React.createElement(
+      "button",
+      { type: "button", id: "spotifyButton", className: "btn btn-primary btn-lg btn-block" },
+      "Click Me"
+    )
+  );
+};
+
+var clickMeme = function clickMeme() {
+  setInterval(function () {
+    document.querySelector("#getMemed").innerHTML = "CAN I USE SPOTIFY FOR MY 330 PROJECT CODY? " + document.querySelector("#getMemed").innerHTML;
+    document.querySelector('#spotifyButton').scrollIntoView();
+  }, 1);
+};
+
+var spotifySetup = function spotifySetup(csrf) {
+  console.log("in spotify setup");
+
+  SpotifyMainClass = React.createClass({
+    displayName: "SpotifyMainClass",
+
+    render: renderSpotifyMain
+  });
+
+  spotifyMain = ReactDOM.render(React.createElement(SpotifyMainClass, { csrf: csrf }), document.querySelector("#mainSpotify"));
+
+  if (document.querySelector("#spotifyButton")) {
+    document.querySelector("#spotifyButton").onclick = clickMeme;
+  }
+};
+
+var spotifyGetToken = function spotifyGetToken() {
+  console.log("in spotify get token");
+
+  sendAjax('GET', '/getToken', null, function (result) {
+    spotifySetup(result.csrfToken);
+  });
+};
+
+$(document).ready(function () {
+  console.log("in spotify ready");
+
+  spotifyGetToken();
+});
+"use strict";
+
 var storeRenderer = void 0;
 var storeMain = void 0;
 var StoreMainClass = void 0;
@@ -612,6 +667,37 @@ var renderStoreMain = function renderStoreMain() {
             "button",
             { type: "button", id: "auto100000000Button", className: "btn btn-primary" },
             "Buy 100000000 Autoclickers!"
+          )
+        )
+      ),
+      React.createElement(
+        "div",
+        { className: "row" },
+        React.createElement(
+          "div",
+          { className: "col-xs-4" },
+          React.createElement(
+            "button",
+            { type: "button", id: "auto10000000000Button", className: "btn btn-primary" },
+            "Buy 10000000000 Autoclicker"
+          )
+        ),
+        React.createElement(
+          "div",
+          { className: "col-xs-4" },
+          React.createElement(
+            "button",
+            { type: "button", id: "auto1000000000000Button", className: "btn btn-primary" },
+            "Buy 1000000000000 Autoclickers"
+          )
+        ),
+        React.createElement(
+          "div",
+          { className: "col-xs-4" },
+          React.createElement(
+            "button",
+            { type: "button", id: "auto100000000000000Button", className: "btn btn-primary" },
+            "Buy 100000000000000 Autoclickers!"
           )
         )
       )
@@ -715,6 +801,24 @@ var storeSetup = function storeSetup(csrf) {
   if (document.querySelector("#auto100000000Button")) {
     document.querySelector("#auto100000000Button").onclick = function () {
       buyAutoClicker(100000000);
+    };
+  }
+
+  if (document.querySelector("#auto10000000000Button")) {
+    document.querySelector("#auto10000000000Button").onclick = function () {
+      buyAutoClicker(10000000000);
+    };
+  }
+
+  if (document.querySelector("#auto1000000000000Button")) {
+    document.querySelector("#auto1000000000000Button").onclick = function () {
+      buyAutoClicker(1000000000000);
+    };
+  }
+
+  if (document.querySelector("#auto100000000000000Button")) {
+    document.querySelector("#auto100000000000000Button").onclick = function () {
+      buyAutoClicker(100000000000000);
     };
   }
 };
