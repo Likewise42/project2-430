@@ -583,6 +583,37 @@ var renderStoreMain = function renderStoreMain() {
             "Buy 100 Autoclickers!"
           )
         )
+      ),
+      React.createElement(
+        "div",
+        { className: "row" },
+        React.createElement(
+          "div",
+          { className: "col-xs-4" },
+          React.createElement(
+            "button",
+            { type: "button", id: "auto10000Button", className: "btn btn-primary" },
+            "Buy 10000 Autoclicker"
+          )
+        ),
+        React.createElement(
+          "div",
+          { className: "col-xs-4" },
+          React.createElement(
+            "button",
+            { type: "button", id: "auto1000000Button", className: "btn btn-primary" },
+            "Buy 1000000 Autoclickers"
+          )
+        ),
+        React.createElement(
+          "div",
+          { className: "col-xs-4" },
+          React.createElement(
+            "button",
+            { type: "button", id: "auto100000000Button", className: "btn btn-primary" },
+            "Buy 100000000 Autoclickers!"
+          )
+        )
       )
     ),
     React.createElement(
@@ -666,6 +697,24 @@ var storeSetup = function storeSetup(csrf) {
   if (document.querySelector("#auto100Button")) {
     document.querySelector("#auto100Button").onclick = function () {
       buyAutoClicker(100);
+    };
+  }
+
+  if (document.querySelector("#auto10000Button")) {
+    document.querySelector("#auto10000Button").onclick = function () {
+      buyAutoClicker(10000);
+    };
+  }
+
+  if (document.querySelector("#auto1000000Button")) {
+    document.querySelector("#auto1000000Button").onclick = function () {
+      buyAutoClicker(1000000);
+    };
+  }
+
+  if (document.querySelector("#auto100000000Button")) {
+    document.querySelector("#auto100000000Button").onclick = function () {
+      buyAutoClicker(100000000);
     };
   }
 };
