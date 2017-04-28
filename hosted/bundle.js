@@ -18,37 +18,21 @@ var renderClickerMain = function renderClickerMain() {
     null,
     React.createElement(
       "div",
-      { className: "row" },
+      { className: "well row" },
       React.createElement(
-        "div",
-        { className: "well col-xs-offset-1 col-xs-4" },
-        React.createElement(
-          "p",
-          { id: "clickNumEle" },
-          "Clicks: 0"
-        ),
-        React.createElement(
-          "p",
-          { id: "dollarCoinEle" },
-          "Coins: 0"
-        )
+        "p",
+        { id: "clickNumEle", className: "col-xs-4" },
+        "Clicks: 0"
       ),
       React.createElement(
-        "div",
-        { className: "well col-xs-offset-2 col-xs-4" },
-        React.createElement(
-          "form",
-          { id: "saveForm",
-            name: "saveForm",
-            onSubmit: this.handleSubmit,
-            action: "/clicker",
-            method: "POST",
-            className: "saveForm"
-          },
-          React.createElement("input", { id: "playerValuesForm", type: "hidden", name: "playerValues" }),
-          React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf }),
-          React.createElement("input", { className: "btn btn-primary btn-lg btn-block", type: "submit", value: "Save" })
-        )
+        "p",
+        { id: "dollarCoinEle", className: "col-xs-4" },
+        "Coins: 0"
+      ),
+      React.createElement(
+        "p",
+        { id: "autoClickersEle", className: "col-xs-4" },
+        "Auto Clickers: 0"
       )
     ),
     React.createElement(
@@ -105,6 +89,18 @@ var renderClickerMain = function renderClickerMain() {
         React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf }),
         React.createElement("input", { className: "btn btn-primary btn-lg", type: "submit", value: "Update Password" })
       )
+    ),
+    React.createElement(
+      "form",
+      { id: "saveForm",
+        name: "saveForm",
+        onSubmit: this.handleSubmit,
+        action: "/clicker",
+        method: "POST",
+        className: "saveForm"
+      },
+      React.createElement("input", { id: "playerValuesForm", type: "hidden", name: "playerValues" }),
+      React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf })
     )
   );
 
@@ -122,21 +118,27 @@ var onMainClick = function onMainClick() {
   updateValues();
 };
 
+var autoClick = function autoClick() {
+  playerValues.money += playerValues.autoClickers;
+  playerValues.clicks += playerValues.autoClickers;
+
+  updateValues();
+};
+
 var updateValues = function updateValues() {
   document.querySelector("#clickNumEle").innerHTML = "Clicks: " + playerValues.clicks;
   document.querySelector("#dollarCoinEle").innerHTML = "Coins: " + playerValues.money;
+  document.querySelector("#autoClickersEle").innerHTML = "Auto Clickers: " + playerValues.autoClickers;
 
   document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
+
+  handleSave();
 };
 
-var handleSave = function handleSave(e) {
-  e.preventDefault();
-
+var handleSave = function handleSave() {
   sendAjax('POST', $("#saveForm").attr("action"), $("#saveForm").serialize(), function () {
     console.log("Save Successful!");
   });
-
-  return false;
 };
 
 var handlePassUpdate = function handlePassUpdate(e) {
@@ -174,12 +176,18 @@ var clickerSetup = function clickerSetup(csrf) {
     },
     componentDidMount: function componentDidMount() {
       this.loadBaseStats();
+
+      setInterval(function () {
+        autoClick();
+      }, 1000);
     }
   });
 
   clickerMain = ReactDOM.render(React.createElement(ClickerMainClass, { csrf: csrf }), document.querySelector("#mainClicker"));
 
-  document.querySelector("#mainButton").onclick = onMainClick;
+  if (document.querySelector("#mainButton")) {
+    document.querySelector("#mainButton").onclick = onMainClick;
+  }
 };
 
 var clickerGetToken = function clickerGetToken() {
@@ -471,6 +479,172 @@ var getToken = function getToken() {
 
 $(document).ready(function () {
   getToken();
+});
+"use strict";
+
+var storeRenderer = void 0;
+var storeMain = void 0;
+var StoreMainClass = void 0;
+
+//clicker attributes:
+var playerValues = {};
+playerValues.money = 0;
+playerValues.clicks = 0;
+playerValues.autoClickers = 0;
+playerValues.autoClickers10 = 0;
+playerValues.autoClickers100 = 0;
+
+var renderStoreMain = function renderStoreMain() {
+  return React.createElement(
+    "div",
+    null,
+    React.createElement(
+      "p",
+      { id: "coinDisplay" },
+      "Coins: 0"
+    ),
+    React.createElement(
+      "div",
+      { className: "well well-lg" },
+      React.createElement(
+        "h1",
+        { id: "autoClickers" },
+        "Auto Clickers: 0"
+      ),
+      React.createElement(
+        "h4",
+        null,
+        "Auto Clickers cost 100 coins each"
+      ),
+      React.createElement(
+        "div",
+        { className: "row" },
+        React.createElement(
+          "div",
+          { className: "col-xs-4" },
+          React.createElement(
+            "button",
+            { type: "button", id: "auto1Button", className: "btn btn-primary" },
+            "Buy 1 Autoclicker"
+          )
+        ),
+        React.createElement(
+          "div",
+          { className: "col-xs-4" },
+          React.createElement(
+            "button",
+            { type: "button", id: "auto10Button", className: "btn btn-primary" },
+            "Buy 10 Autoclickers"
+          )
+        ),
+        React.createElement(
+          "div",
+          { className: "col-xs-4" },
+          React.createElement(
+            "button",
+            { type: "button", id: "auto100Button", className: "btn btn-primary" },
+            "Buy 100 Autoclickers!"
+          )
+        )
+      )
+    ),
+    React.createElement(
+      "form",
+      { id: "saveForm",
+        name: "saveForm",
+        onSubmit: this.handleSubmit,
+        action: "/clicker",
+        method: "POST",
+        className: "saveForm"
+      },
+      React.createElement("input", { id: "playerValuesForm", type: "hidden", name: "playerValues" }),
+      React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf })
+    )
+  );
+};
+
+var buyAutoClicker = function buyAutoClicker(toBuy) {
+
+  var clickerCost = 100;
+
+  if (toBuy * clickerCost > playerValues.money) {
+    console.log("Not enough coins");
+  } else {
+    playerValues.autoClickers += toBuy;
+    playerValues.money -= toBuy * clickerCost;
+  }
+
+  updateValuesStore();
+};
+
+var updateValuesStore = function updateValuesStore() {
+  document.querySelector("#coinDisplay").innerHTML = "Coins: " + playerValues.money;
+  document.querySelector("#autoClickers").innerHTML = "Auto Clickers: " + playerValues.autoClickers;
+
+  document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
+
+  handleSave();
+};
+
+var storeSetup = function storeSetup(csrf) {
+  console.log("in store setup");
+
+  StoreMainClass = React.createClass({
+    displayName: "StoreMainClass",
+
+    render: renderStoreMain,
+    loadBaseStats: function loadBaseStats() {
+      sendAjax('GET', '/getBaseStats', null, function (data) {
+        console.log("Base Stats: ");
+        console.dir(data);
+
+        playerValues.clicks = data.clicks;
+        playerValues.money = data.money;
+        playerValues.autoClickers = data.autoClickers;
+        playerValues.autoClickers10 = data.autoClickers10;
+        playerValues.autoClickers100 = data.autoClickers100;
+
+        updateValuesStore();
+      }.bind(this));
+    },
+    componentDidMount: function componentDidMount() {
+      this.loadBaseStats();
+    }
+  });
+
+  storeMain = ReactDOM.render(React.createElement(StoreMainClass, { csrf: csrf }), document.querySelector("#mainStore"));
+
+  if (document.querySelector("#auto1Button")) {
+    document.querySelector("#auto1Button").onclick = function () {
+      buyAutoClicker(1);
+    };
+  }
+
+  if (document.querySelector("#auto10Button")) {
+    document.querySelector("#auto10Button").onclick = function () {
+      buyAutoClicker(10);
+    };
+  }
+
+  if (document.querySelector("#auto100Button")) {
+    document.querySelector("#auto100Button").onclick = function () {
+      buyAutoClicker(1);
+    };
+  }
+};
+
+var storeGetToken = function storeGetToken() {
+  console.log("in store get token");
+
+  sendAjax('GET', '/getToken', null, function (result) {
+    storeSetup(result.csrfToken);
+  });
+};
+
+$(document).ready(function () {
+  console.log("in store ready");
+
+  storeGetToken();
 });
 'use strict';
 
