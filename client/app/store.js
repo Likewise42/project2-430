@@ -18,47 +18,47 @@ const renderStoreMain = function() {
 				<h1 id="autoClickers">Auto Clickers: 0</h1>
 				<h4>Auto Clickers cost 100 dollar coins each</h4>
 				<div className="row">
-					<div className="col-s-4">
+					<div className="col-sm-4">
 						<button type="button" id="auto1Button" className="btn btn-primary">Buy 1 Autoclicker</button>
 					</div>
-					<div className="col-s-4">
+					<div className="col-sm-4">
 						<button type="button" id="auto10Button" className="btn btn-primary">Buy 10 Autoclickers</button>
 					</div>
-					<div className="col-s-4">
-						<button type="button" id="auto100Button" className="btn btn-primary">Buy 100 Autoclickers!</button>
+					<div className="col-sm-4">
+						<button type="button" id="auto100Button" className="btn btn-primary">Buy 100 Autoclickers</button>
 					</div>
 				</div>
 				<div className="row">
-					<div className="col-s-4">
+					<div className="col-sm-4">
 						<button type="button" id="auto10000Button" className="btn btn-primary">Buy 10k Autoclicker</button>
 					</div>
-					<div className="col-s-4">
-						<button type="button" id="auto1000000Button" className="btn btn-primary">Buy 1000k Autoclickers</button>
+					<div className="col-sm-4">
+						<button type="button" id="auto1000000Button" className="btn btn-primary">Buy 1m Autoclickers</button>
 					</div>
-					<div className="col-s-4">
-						<button type="button" id="auto100000000Button" className="btn btn-primary">Buy 100000k Autoclickers!</button>
-					</div>
-				</div>
-				<div className="row">
-					<div className="col-s-4">
-						<button type="button" id="auto10000000000Button" className="btn btn-primary">Buy 10000000k Autoclicker</button>
-					</div>
-					<div className="col-s-4">
-						<button type="button" id="auto1000000000000Button" className="btn btn-primary">Buy 1000000000k Autoclickers</button>
-					</div>
-					<div className="col-s-4">
-						<button type="button" id="auto100000000000000Button" className="btn btn-primary">Buy 100000000000k Autoclickers!</button>
+					<div className="col-sm-4">
+						<button type="button" id="auto100000000Button" className="btn btn-primary">Buy 100m Autoclickers</button>
 					</div>
 				</div>
 				<div className="row">
-					<div className="col-s-4">
-						<button type="button" id="auto10000000000000000Button" className="btn btn-primary">Buy 10000000000000k Autoclicker</button>
+					<div className="col-sm-4">
+						<button type="button" id="auto10000000000Button" className="btn btn-primary">Buy 10b Autoclicker</button>
 					</div>
-					<div className="col-s-4">
-						<button type="button" id="auto1000000000000000000Button" className="btn btn-primary">Buy 1000000000000000k Autoclickers</button>
+					<div className="col-sm-4">
+						<button type="button" id="auto1000000000000Button" className="btn btn-primary">Buy 1t Autoclickers</button>
 					</div>
-					<div className="col-s-4">
-						<button type="button" id="auto100000000000000000000Button" className="btn btn-primary">Buy 100000000000000000k Autoclickers!</button>
+					<div className="col-sm-4">
+						<button type="button" id="auto100000000000000Button" className="btn btn-primary">Buy 100t Autoclickers</button>
+					</div>
+				</div>
+				<div className="row">
+					<div className="col-sm-4">
+						<button type="button" id="auto10000000000000000Button" className="btn btn-primary">Buy 10quad Autoclicker</button>
+					</div>
+					<div className="col-sm-4">
+						<button type="button" id="auto1000000000000000000Button" className="btn btn-primary">Buy 1quint Autoclickers</button>
+					</div>
+					<div className="col-sm-4">
+						<button type="button" id="auto100000000000000000000Button" className="btn btn-primary">Buy 100quint Autoclickers</button>
 					</div>
 				</div>
 				<div className="row">

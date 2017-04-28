@@ -648,7 +648,7 @@ var renderStoreMain = function renderStoreMain() {
 				{ className: "row" },
 				React.createElement(
 					"div",
-					{ className: "col-s-4" },
+					{ className: "col-sm-4" },
 					React.createElement(
 						"button",
 						{ type: "button", id: "auto1Button", className: "btn btn-primary" },
@@ -657,7 +657,7 @@ var renderStoreMain = function renderStoreMain() {
 				),
 				React.createElement(
 					"div",
-					{ className: "col-s-4" },
+					{ className: "col-sm-4" },
 					React.createElement(
 						"button",
 						{ type: "button", id: "auto10Button", className: "btn btn-primary" },
@@ -666,11 +666,11 @@ var renderStoreMain = function renderStoreMain() {
 				),
 				React.createElement(
 					"div",
-					{ className: "col-s-4" },
+					{ className: "col-sm-4" },
 					React.createElement(
 						"button",
 						{ type: "button", id: "auto100Button", className: "btn btn-primary" },
-						"Buy 100 Autoclickers!"
+						"Buy 100 Autoclickers"
 					)
 				)
 			),
@@ -679,7 +679,7 @@ var renderStoreMain = function renderStoreMain() {
 				{ className: "row" },
 				React.createElement(
 					"div",
-					{ className: "col-s-4" },
+					{ className: "col-sm-4" },
 					React.createElement(
 						"button",
 						{ type: "button", id: "auto10000Button", className: "btn btn-primary" },
@@ -688,20 +688,20 @@ var renderStoreMain = function renderStoreMain() {
 				),
 				React.createElement(
 					"div",
-					{ className: "col-s-4" },
+					{ className: "col-sm-4" },
 					React.createElement(
 						"button",
 						{ type: "button", id: "auto1000000Button", className: "btn btn-primary" },
-						"Buy 1000k Autoclickers"
+						"Buy 1m Autoclickers"
 					)
 				),
 				React.createElement(
 					"div",
-					{ className: "col-s-4" },
+					{ className: "col-sm-4" },
 					React.createElement(
 						"button",
 						{ type: "button", id: "auto100000000Button", className: "btn btn-primary" },
-						"Buy 100000k Autoclickers!"
+						"Buy 100m Autoclickers"
 					)
 				)
 			),
@@ -710,29 +710,29 @@ var renderStoreMain = function renderStoreMain() {
 				{ className: "row" },
 				React.createElement(
 					"div",
-					{ className: "col-s-4" },
+					{ className: "col-sm-4" },
 					React.createElement(
 						"button",
 						{ type: "button", id: "auto10000000000Button", className: "btn btn-primary" },
-						"Buy 10000000k Autoclicker"
+						"Buy 10b Autoclicker"
 					)
 				),
 				React.createElement(
 					"div",
-					{ className: "col-s-4" },
+					{ className: "col-sm-4" },
 					React.createElement(
 						"button",
 						{ type: "button", id: "auto1000000000000Button", className: "btn btn-primary" },
-						"Buy 1000000000k Autoclickers"
+						"Buy 1t Autoclickers"
 					)
 				),
 				React.createElement(
 					"div",
-					{ className: "col-s-4" },
+					{ className: "col-sm-4" },
 					React.createElement(
 						"button",
 						{ type: "button", id: "auto100000000000000Button", className: "btn btn-primary" },
-						"Buy 100000000000k Autoclickers!"
+						"Buy 100t Autoclickers"
 					)
 				)
 			),
@@ -741,29 +741,29 @@ var renderStoreMain = function renderStoreMain() {
 				{ className: "row" },
 				React.createElement(
 					"div",
-					{ className: "col-s-4" },
+					{ className: "col-sm-4" },
 					React.createElement(
 						"button",
 						{ type: "button", id: "auto10000000000000000Button", className: "btn btn-primary" },
-						"Buy 10000000000000k Autoclicker"
+						"Buy 10quad Autoclicker"
 					)
 				),
 				React.createElement(
 					"div",
-					{ className: "col-s-4" },
+					{ className: "col-sm-4" },
 					React.createElement(
 						"button",
 						{ type: "button", id: "auto1000000000000000000Button", className: "btn btn-primary" },
-						"Buy 1000000000000000k Autoclickers"
+						"Buy 1quint Autoclickers"
 					)
 				),
 				React.createElement(
 					"div",
-					{ className: "col-s-4" },
+					{ className: "col-sm-4" },
 					React.createElement(
 						"button",
 						{ type: "button", id: "auto100000000000000000000Button", className: "btn btn-primary" },
-						"Buy 100000000000000000k Autoclickers!"
+						"Buy 100quint Autoclickers"
 					)
 				)
 			),
