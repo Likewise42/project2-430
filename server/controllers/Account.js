@@ -112,7 +112,6 @@ const updateValues = (request, response) => {
     }));
 
     savePromise.catch((sErr) => {
-      console.dir(sErr);
       res.json(sErr);
     });
 
@@ -200,7 +199,6 @@ const getBaseStats = (request, response) => {
   const res = response;
 
   return Account.AccountModel.authenticateID(req.session.account._id, (err, account) => {
-
     if (err || !account) {
       return res.status(401).json({ error: 'Wrong id' });
     }

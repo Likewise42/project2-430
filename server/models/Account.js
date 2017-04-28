@@ -88,8 +88,6 @@ AccountSchema.statics.findByUsername = (name, callback) => {
 };
 
 AccountSchema.statics.findByID = (id, callback) => {
-  console.dir(convertId(id));
-
   const search = {
     _id: convertId(id),
   };
@@ -133,8 +131,6 @@ AccountModel.findByID(id, (err, doc) => {
   if (!doc) {
     return callback();
   }
-
-  console.dir(doc);
 
   return callback(null, doc);
 });
