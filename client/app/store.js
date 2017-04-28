@@ -15,17 +15,17 @@ const renderStoreMain = function() {
 		<div>
 			<p id="coinDisplay">Dollar Coins: 0</p>
 			<div className="well well-lg">
-				<h1 id="autoClickers">Auto Clickers: 0</h1>
-				<h4>Auto Clickers cost 100 dollar coins each</h4>
+				<h1 id="autoClickers">Moonlings: 0</h1>
+				<h4>Moonlings cost 100 dollar coins each</h4>
 				<div className="row">
 					<div className="col-sm-4">
-						<button type="button" id="auto1Button" className="btn btn-primary">Buy 1 Autoclicker</button>
+						<button type="button" id="auto1Button" className="btn btn-primary">Buy 1 Moonling</button>
 					</div>
 					<div className="col-sm-4">
-						<button type="button" id="auto10Button" className="btn btn-primary">Buy 10 Autoclickers</button>
+						<button type="button" id="auto10Button" className="btn btn-primary">Buy 10 Moonlings</button>
 					</div>
 					<div className="col-sm-4">
-						<button type="button" id="auto100Button" className="btn btn-primary">Buy 100 Autoclickers</button>
+						<button type="button" id="auto100Button" className="btn btn-primary">Buy 100 Moonlings</button>
 					</div>
 				</div>
 				<div className="row">
@@ -33,10 +33,10 @@ const renderStoreMain = function() {
 						<button type="button" id="auto10000Button" className="btn btn-primary">Buy 10k Autoclicker</button>
 					</div>
 					<div className="col-sm-4">
-						<button type="button" id="auto1000000Button" className="btn btn-primary">Buy 1m Autoclickers</button>
+						<button type="button" id="auto1000000Button" className="btn btn-primary">Buy 1m Moonlings</button>
 					</div>
 					<div className="col-sm-4">
-						<button type="button" id="auto100000000Button" className="btn btn-primary">Buy 100m Autoclickers</button>
+						<button type="button" id="auto100000000Button" className="btn btn-primary">Buy 100m Moonlings</button>
 					</div>
 				</div>
 				<div className="row">
@@ -44,10 +44,10 @@ const renderStoreMain = function() {
 						<button type="button" id="auto10000000000Button" className="btn btn-primary">Buy 10b Autoclicker</button>
 					</div>
 					<div className="col-sm-4">
-						<button type="button" id="auto1000000000000Button" className="btn btn-primary">Buy 1t Autoclickers</button>
+						<button type="button" id="auto1000000000000Button" className="btn btn-primary">Buy 1t Moonlings</button>
 					</div>
 					<div className="col-sm-4">
-						<button type="button" id="auto100000000000000Button" className="btn btn-primary">Buy 100t Autoclickers</button>
+						<button type="button" id="auto100000000000000Button" className="btn btn-primary">Buy 100t Moonlings</button>
 					</div>
 				</div>
 				<div className="row">
@@ -55,10 +55,10 @@ const renderStoreMain = function() {
 						<button type="button" id="auto10000000000000000Button" className="btn btn-primary">Buy 10quad Autoclicker</button>
 					</div>
 					<div className="col-sm-4">
-						<button type="button" id="auto1000000000000000000Button" className="btn btn-primary">Buy 1quint Autoclickers</button>
+						<button type="button" id="auto1000000000000000000Button" className="btn btn-primary">Buy 1quint Moonlings</button>
 					</div>
 					<div className="col-sm-4">
-						<button type="button" id="auto100000000000000000000Button" className="btn btn-primary">Buy 100quint Autoclickers</button>
+						<button type="button" id="auto100000000000000000000Button" className="btn btn-primary">Buy 100quint Moonlings</button>
 					</div>
 				</div>
 				<div className="row">
@@ -111,7 +111,7 @@ const buyDoublerMachine = (toBuy) =>{
 
 const updateValuesStore = () =>{
 	document.querySelector("#coinDisplay").innerHTML = `Dollar Coins: ${playerValues.money}`;
-	document.querySelector("#autoClickers").innerHTML = `Auto Clickers: ${playerValues.autoClickers}`;
+	document.querySelector("#autoClickers").innerHTML = `Moonlings: ${playerValues.autoClickers}`;
 
 	document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
 

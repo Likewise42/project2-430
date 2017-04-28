@@ -17,7 +17,7 @@ const renderClickerMain = function() {
 			<div className="well row">
 				<p id="clickNumEle" className="col-xs-3">Clicks: 0</p>
 				<p id="dollarCoinEle" className="col-xs-3">Dollar Coins: 0</p>
-				<p id="autoClickersEle" className="col-xs-3">Auto Clickers: 0</p>
+				<p id="autoClickersEle" className="col-xs-3">Moonlings: 0</p>
 				<p id="doublerMachinesEle" className="col-xs-3">Doubler Machines: 0</p>
 
 			</div>
@@ -72,7 +72,7 @@ const doubleMoney = () =>{
 const updateValues = () =>{
 	document.querySelector("#clickNumEle").innerHTML = `Clicks: ${playerValues.clicks}`;
 	document.querySelector("#dollarCoinEle").innerHTML = `Dollar Coins: ${playerValues.money}`;
-	document.querySelector("#autoClickersEle").innerHTML = `Auto Clickers: ${playerValues.autoClickers}`;
+	document.querySelector("#autoClickersEle").innerHTML = `Moonlings: ${playerValues.autoClickers}`;
 	document.querySelector("#doublerMachinesEle").innerHTML = `Doubler Machines: ${playerValues.autoClickers10}`;
 
 	document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);

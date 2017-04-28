@@ -124,7 +124,7 @@ var renderClickerMain = function renderClickerMain() {
 			React.createElement(
 				"p",
 				{ id: "autoClickersEle", className: "col-xs-3" },
-				"Auto Clickers: 0"
+				"Moonlings: 0"
 			),
 			React.createElement(
 				"p",
@@ -188,7 +188,7 @@ var doubleMoney = function doubleMoney() {
 var updateValues = function updateValues() {
 	document.querySelector("#clickNumEle").innerHTML = "Clicks: " + playerValues.clicks;
 	document.querySelector("#dollarCoinEle").innerHTML = "Dollar Coins: " + playerValues.money;
-	document.querySelector("#autoClickersEle").innerHTML = "Auto Clickers: " + playerValues.autoClickers;
+	document.querySelector("#autoClickersEle").innerHTML = "Moonlings: " + playerValues.autoClickers;
 	document.querySelector("#doublerMachinesEle").innerHTML = "Doubler Machines: " + playerValues.autoClickers10;
 
 	document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
@@ -695,12 +695,12 @@ var renderStoreMain = function renderStoreMain() {
 			React.createElement(
 				"h1",
 				{ id: "autoClickers" },
-				"Auto Clickers: 0"
+				"Moonlings: 0"
 			),
 			React.createElement(
 				"h4",
 				null,
-				"Auto Clickers cost 100 dollar coins each"
+				"Moonlings cost 100 dollar coins each"
 			),
 			React.createElement(
 				"div",
@@ -711,7 +711,7 @@ var renderStoreMain = function renderStoreMain() {
 					React.createElement(
 						"button",
 						{ type: "button", id: "auto1Button", className: "btn btn-primary" },
-						"Buy 1 Autoclicker"
+						"Buy 1 Moonling"
 					)
 				),
 				React.createElement(
@@ -720,7 +720,7 @@ var renderStoreMain = function renderStoreMain() {
 					React.createElement(
 						"button",
 						{ type: "button", id: "auto10Button", className: "btn btn-primary" },
-						"Buy 10 Autoclickers"
+						"Buy 10 Moonlings"
 					)
 				),
 				React.createElement(
@@ -729,7 +729,7 @@ var renderStoreMain = function renderStoreMain() {
 					React.createElement(
 						"button",
 						{ type: "button", id: "auto100Button", className: "btn btn-primary" },
-						"Buy 100 Autoclickers"
+						"Buy 100 Moonlings"
 					)
 				)
 			),
@@ -751,7 +751,7 @@ var renderStoreMain = function renderStoreMain() {
 					React.createElement(
 						"button",
 						{ type: "button", id: "auto1000000Button", className: "btn btn-primary" },
-						"Buy 1m Autoclickers"
+						"Buy 1m Moonlings"
 					)
 				),
 				React.createElement(
@@ -760,7 +760,7 @@ var renderStoreMain = function renderStoreMain() {
 					React.createElement(
 						"button",
 						{ type: "button", id: "auto100000000Button", className: "btn btn-primary" },
-						"Buy 100m Autoclickers"
+						"Buy 100m Moonlings"
 					)
 				)
 			),
@@ -782,7 +782,7 @@ var renderStoreMain = function renderStoreMain() {
 					React.createElement(
 						"button",
 						{ type: "button", id: "auto1000000000000Button", className: "btn btn-primary" },
-						"Buy 1t Autoclickers"
+						"Buy 1t Moonlings"
 					)
 				),
 				React.createElement(
@@ -791,7 +791,7 @@ var renderStoreMain = function renderStoreMain() {
 					React.createElement(
 						"button",
 						{ type: "button", id: "auto100000000000000Button", className: "btn btn-primary" },
-						"Buy 100t Autoclickers"
+						"Buy 100t Moonlings"
 					)
 				)
 			),
@@ -813,7 +813,7 @@ var renderStoreMain = function renderStoreMain() {
 					React.createElement(
 						"button",
 						{ type: "button", id: "auto1000000000000000000Button", className: "btn btn-primary" },
-						"Buy 1quint Autoclickers"
+						"Buy 1quint Moonlings"
 					)
 				),
 				React.createElement(
@@ -822,7 +822,7 @@ var renderStoreMain = function renderStoreMain() {
 					React.createElement(
 						"button",
 						{ type: "button", id: "auto100000000000000000000Button", className: "btn btn-primary" },
-						"Buy 100quint Autoclickers"
+						"Buy 100quint Moonlings"
 					)
 				)
 			),
@@ -885,7 +885,7 @@ var buyDoublerMachine = function buyDoublerMachine(toBuy) {
 
 var updateValuesStore = function updateValuesStore() {
 	document.querySelector("#coinDisplay").innerHTML = "Dollar Coins: " + playerValues.money;
-	document.querySelector("#autoClickers").innerHTML = "Auto Clickers: " + playerValues.autoClickers;
+	document.querySelector("#autoClickers").innerHTML = "Moonlings: " + playerValues.autoClickers;
 
 	document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
 
