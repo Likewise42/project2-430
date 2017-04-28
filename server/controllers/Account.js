@@ -86,12 +86,9 @@ const updateValues = (request, response) => {
   const res = response;
 
   let playerValues = `${req.body.playerValues}`;
-  console.dir(playerValues);
   playerValues = JSON.parse(playerValues);
 
   return Account.AccountModel.authenticateID(req.session.account._id, (err, account) => {
-    console.dir(account);
-
     if (err || !account) {
       return res.status(401).json({ error: 'Wrong id' });
     }
@@ -203,7 +200,6 @@ const getBaseStats = (request, response) => {
   const res = response;
 
   return Account.AccountModel.authenticateID(req.session.account._id, (err, account) => {
-    console.dir(account);
 
     if (err || !account) {
       return res.status(401).json({ error: 'Wrong id' });
