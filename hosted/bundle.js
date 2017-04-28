@@ -114,6 +114,7 @@ var onMainClick = function onMainClick() {
   console.log("click");
   playerValues.clicks++;
   playerValues.money++;
+  updateValues();
 };
 
 var autoClick = function autoClick() {
@@ -121,6 +122,7 @@ var autoClick = function autoClick() {
   playerValues.clicks += playerValues.autoClickers;
 
   updateValues();
+  handleSave();
 };
 
 var updateValues = function updateValues() {
@@ -129,8 +131,6 @@ var updateValues = function updateValues() {
   document.querySelector("#autoClickersEle").innerHTML = "Auto Clickers: " + playerValues.autoClickers;
 
   document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
-
-  handleSave();
 };
 
 var handleSave = function handleSave() {
