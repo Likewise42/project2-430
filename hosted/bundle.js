@@ -114,8 +114,6 @@ var onMainClick = function onMainClick() {
   console.log("click");
   playerValues.clicks++;
   playerValues.money++;
-
-  updateValues();
 };
 
 var autoClick = function autoClick() {

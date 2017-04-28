@@ -76,8 +76,6 @@ const onMainClick = () =>{
   console.log("click");
   playerValues.clicks++;
   playerValues.money++;
-
-  updateValues();
 };
 
 const autoClick = () =>{
