@@ -21,6 +21,7 @@ const router = (app) => {
   app.get('/about', mid.requiresLogin, controllers.Spotify.spotifyPage);
   app.post('/updatePass', mid.requiresLogin, controllers.Account.updatePass);
   app.get('/', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
+  app.get('/*', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
 };
 
 module.exports = router;

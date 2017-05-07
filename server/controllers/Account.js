@@ -115,7 +115,7 @@ const updateValues = (request, response) => {
       res.json(sErr);
     });
 
-    return res.json({ redirect: '/clicker' });
+    //return res.json({ redirect: '/clicker' });
   });
 
   //  return Account.AccountModel.authenticate(username, password, (err, account) => {
