@@ -13,7 +13,6 @@ playerValues.autoClickers100 = 0;
 const renderStoreMain = function() {
 	return(
 		<div>
-			<p id="coinDisplay">Dollar Coins: 0</p>
 			<div className="well well-lg">
 				<h1 id="autoClickers">Moonlings: 0</h1>
 				<h4>Moonlings cost 100 dollar coins each</h4>
@@ -110,7 +109,6 @@ const buyDoublerMachine = (toBuy) =>{
 };
 
 const updateValuesStore = () =>{
-	document.querySelector("#coinDisplay").innerHTML = `Dollar Coins: ${playerValues.money}`;
 	document.querySelector("#autoClickers").innerHTML = `Moonlings: ${playerValues.autoClickers}`;
 
 	document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
