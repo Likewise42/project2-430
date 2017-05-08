@@ -5,90 +5,90 @@ var changeMain = void 0;
 var ChangeMainClass = void 0;
 
 var renderChangeMain = function renderChangeMain() {
-	return React.createElement(
-		"div",
-		null,
-		React.createElement(
-			"div",
-			{ className: "well well-lg" },
-			React.createElement(
-				"h1",
-				null,
-				"Change Password"
-			),
-			React.createElement(
-				"form",
-				{ id: "updateForm",
-					name: "updateForm",
-					onSubmit: this.handlePassSubmit,
-					action: "/updatePass",
-					method: "POST",
-					className: "updateForm"
-				},
-				React.createElement(
-					"div",
-					{ className: "row" },
-					React.createElement(
-						"label",
-						{ htmlFor: "username" },
-						"Username: "
-					),
-					React.createElement("input", { id: "user", className: "form-control", type: "text", name: "username", placeholder: "Username" })
-				),
-				React.createElement(
-					"div",
-					{ className: "row" },
-					React.createElement(
-						"label",
-						{ htmlFor: "cPass" },
-						"Current Password: "
-					),
-					React.createElement("input", { id: "cPass", className: "form-control", type: "password", name: "cPass", placeholder: "Current Password" })
-				),
-				React.createElement(
-					"div",
-					{ className: "row" },
-					React.createElement(
-						"label",
-						{ htmlFor: "pass" },
-						"New Password: "
-					),
-					React.createElement("input", { id: "pass", className: "form-control", type: "password", name: "pass", placeholder: "Password" })
-				),
-				React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf }),
-				React.createElement("input", { className: "btn btn-primary btn-lg", type: "submit", value: "Update Password" })
-			)
-		)
-	);
+  return React.createElement(
+    "div",
+    null,
+    React.createElement(
+      "div",
+      { className: "well well-lg" },
+      React.createElement(
+        "h1",
+        null,
+        "Change Password"
+      ),
+      React.createElement(
+        "form",
+        { id: "updateForm",
+          name: "updateForm",
+          onSubmit: this.handlePassSubmit,
+          action: "/updatePass",
+          method: "POST",
+          className: "updateForm"
+        },
+        React.createElement(
+          "div",
+          { className: "row" },
+          React.createElement(
+            "label",
+            { htmlFor: "username" },
+            "Username: "
+          ),
+          React.createElement("input", { id: "user", className: "form-control", type: "text", name: "username", placeholder: "Username" })
+        ),
+        React.createElement(
+          "div",
+          { className: "row" },
+          React.createElement(
+            "label",
+            { htmlFor: "cPass" },
+            "Current Password: "
+          ),
+          React.createElement("input", { id: "cPass", className: "form-control", type: "password", name: "cPass", placeholder: "Current Password" })
+        ),
+        React.createElement(
+          "div",
+          { className: "row" },
+          React.createElement(
+            "label",
+            { htmlFor: "pass" },
+            "New Password: "
+          ),
+          React.createElement("input", { id: "pass", className: "form-control", type: "password", name: "pass", placeholder: "Password" })
+        ),
+        React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf }),
+        React.createElement("input", { className: "btn btn-primary btn-lg", type: "submit", value: "Update Password" })
+      )
+    )
+  );
 };
 
 var changeSetup = function changeSetup(csrf) {
-	console.log("in change setup");
+  console.log("in change setup");
 
-	ChangeMainClass = React.createClass({
-		displayName: "ChangeMainClass",
+  ChangeMainClass = React.createClass({
+    displayName: "ChangeMainClass",
 
-		render: renderChangeMain,
-		handlePassSubmit: handlePassUpdate
-	});
+    render: renderChangeMain,
+    handlePassSubmit: handlePassUpdate
+  });
 
-	if (document.querySelector("#mainChange")) {
-		changeMain = ReactDOM.render(React.createElement(ChangeMainClass, { csrf: csrf }), document.querySelector("#mainChange"));
-	}
+  if (document.querySelector("#mainChange")) {
+    changeMain = ReactDOM.render(React.createElement(ChangeMainClass, { csrf: csrf }), document.querySelector("#mainChange"));
+  }
 };
 
 var changeGetToken = function changeGetToken() {
-	console.log("in change get token");
+  console.log("in change get token");
 
-	sendAjax('GET', '/getToken', null, function (result) {
-		changeSetup(result.csrfToken);
-	});
+  sendAjax('GET', '/getToken', null, function (result) {
+    changeSetup(result.csrfToken);
+  });
 };
 
 $(document).ready(function () {
-	console.log("in change ready");
+  console.log("in change ready");
 
-	changeGetToken();
+  changeGetToken();
 });
 "use strict";
 
@@ -105,167 +105,167 @@ playerValues.autoClickers10 = 0;
 playerValues.autoClickers100 = 0;
 
 var renderClickerMain = function renderClickerMain() {
-	return React.createElement(
-		"div",
-		null,
-		React.createElement(
-			"div",
-			{ className: "well row" },
-			React.createElement(
-				"p",
-				{ id: "clickNumEle", className: "col-xs-3" },
-				"Clicks: 0"
-			),
-			React.createElement(
-				"p",
-				{ id: "dollarCoinEle", className: "col-xs-3" },
-				"Dollar Coins: 0"
-			),
-			React.createElement(
-				"p",
-				{ id: "autoClickersEle", className: "col-xs-3" },
-				"Moonlings: 0"
-			),
-			React.createElement(
-				"p",
-				{ id: "doublerMachinesEle", className: "col-xs-3" },
-				"Doubler Machines: 0"
-			)
-		),
-		React.createElement(
-			"div",
-			{ className: "well well-lg" },
-			React.createElement(
-				"button",
-				{ type: "button", id: "mainButton", className: "btn btn-primary btn-lg btn-block" },
-				"Click me!"
-			)
-		),
-		React.createElement(
-			"form",
-			{ id: "saveForm",
-				name: "saveForm",
-				onSubmit: this.handleSubmit,
-				action: "/clicker",
-				method: "POST",
-				className: "saveForm"
-			},
-			React.createElement("input", { id: "playerValuesForm", type: "hidden", name: "playerValues" }),
-			React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf })
-		)
-	);
+  return React.createElement(
+    "div",
+    null,
+    React.createElement(
+      "div",
+      { className: "well row" },
+      React.createElement(
+        "p",
+        { id: "clickNumEle", className: "col-xs-3" },
+        "Clicks: 0"
+      ),
+      React.createElement(
+        "p",
+        { id: "dollarCoinEle", className: "col-xs-3" },
+        "Dollar Coins: 0"
+      ),
+      React.createElement(
+        "p",
+        { id: "autoClickersEle", className: "col-xs-3" },
+        "Moonlings: 0"
+      ),
+      React.createElement(
+        "p",
+        { id: "doublerMachinesEle", className: "col-xs-3" },
+        "Doubler Machines: 0"
+      )
+    ),
+    React.createElement(
+      "div",
+      { className: "well well-lg" },
+      React.createElement(
+        "button",
+        { type: "button", id: "mainButton", className: "btn btn-primary btn-lg btn-block" },
+        "Click me!"
+      )
+    ),
+    React.createElement(
+      "form",
+      { id: "saveForm",
+        name: "saveForm",
+        onSubmit: this.handleSubmit,
+        action: "/clicker",
+        method: "POST",
+        className: "saveForm"
+      },
+      React.createElement("input", { id: "playerValuesForm", type: "hidden", name: "playerValues" }),
+      React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf })
+    )
+  );
 
-	//  <div className="row">
-	//    <label htmlFor="pass2">New Password: </label>
-	//    <input id="pass2" className="form-control" type="password" name="pass2" placeholder="Retype Password"/>
-	//  </div>
+  //  <div className="row">
+  //    <label htmlFor="pass2">New Password: </label>
+  //    <input id="pass2" className="form-control" type="password" name="pass2" placeholder="Retype Password"/>
+  //  </div>
 };
 
 var onMainClick = function onMainClick() {
-	console.log("click");
-	playerValues.clicks++;
-	playerValues.money++;
-	updateValues();
+  console.log("click");
+  playerValues.clicks++;
+  playerValues.money++;
+  updateValues();
 };
 
 var autoClick = function autoClick() {
-	playerValues.money += playerValues.autoClickers;
-	playerValues.clicks += playerValues.autoClickers;
+  playerValues.money += playerValues.autoClickers;
+  playerValues.clicks += playerValues.autoClickers;
 
-	updateValues();
-	handleSave();
+  updateValues();
+  handleSave();
 };
 
 var doubleMoney = function doubleMoney() {
-	playerValues.money += playerValues.money;
+  playerValues.money += playerValues.money;
 
-	console.log("in doubler");
+  console.log("in doubler");
 
-	updateValues();
-	handleSave();
+  updateValues();
+  handleSave();
 };
 
 var updateValues = function updateValues() {
-	document.querySelector("#clickNumEle").innerHTML = "Clicks: " + playerValues.clicks;
-	document.querySelector("#dollarCoinEle").innerHTML = "Dollar Coins: " + playerValues.money;
-	document.querySelector("#autoClickersEle").innerHTML = "Moonlings: " + playerValues.autoClickers;
-	document.querySelector("#doublerMachinesEle").innerHTML = "Doubler Machines: " + playerValues.autoClickers10;
+  document.querySelector("#clickNumEle").innerHTML = "Clicks: " + playerValues.clicks;
+  document.querySelector("#dollarCoinEle").innerHTML = "Dollar Coins: " + playerValues.money;
+  document.querySelector("#autoClickersEle").innerHTML = "Moonlings: " + playerValues.autoClickers;
+  document.querySelector("#doublerMachinesEle").innerHTML = "Doubler Machines: " + playerValues.autoClickers10;
 
-	document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
+  document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
 };
 
 var handleSave = function handleSave() {
-	sendAjax('POST', $("#saveForm").attr("action"), $("#saveForm").serialize(), function () {
-		console.log("Save Successful!");
-	});
+  sendAjax('POST', $("#saveForm").attr("action"), $("#saveForm").serialize(), function () {
+    console.log("Save Successful!");
+  });
 };
 
 var handlePassUpdate = function handlePassUpdate(e) {
-	e.preventDefault();
+  e.preventDefault();
 
-	sendAjax('POST', $("#updateForm").attr("action"), $("#updateForm").serialize(), function () {
-		console.log("Update Successful!");
-	});
+  sendAjax('POST', $("#updateForm").attr("action"), $("#updateForm").serialize(), function () {
+    console.log("Update Successful!");
+  });
 
-	return false;
+  return false;
 };
 
 var clickerSetup = function clickerSetup(csrf) {
-	console.log("in clicker setup");
+  console.log("in clicker setup");
 
-	ClickerMainClass = React.createClass({
-		displayName: "ClickerMainClass",
+  ClickerMainClass = React.createClass({
+    displayName: "ClickerMainClass",
 
-		handleSubmit: handleSave,
-		handlePassSubmit: handlePassUpdate,
-		render: renderClickerMain,
-		loadBaseStats: function loadBaseStats() {
-			sendAjax('GET', '/getBaseStats', null, function (data) {
-				console.log("Base Stats: ");
-				console.dir(data);
+    handleSubmit: handleSave,
+    handlePassSubmit: handlePassUpdate,
+    render: renderClickerMain,
+    loadBaseStats: function loadBaseStats() {
+      sendAjax('GET', '/getBaseStats', null, function (data) {
+        console.log("Base Stats: ");
+        console.dir(data);
 
-				playerValues.clicks = data.clicks;
-				playerValues.money = data.money;
-				playerValues.autoClickers = data.autoClickers;
-				playerValues.autoClickers10 = data.autoClickers10;
-				playerValues.autoClickers100 = data.autoClickers100;
+        playerValues.clicks = data.clicks;
+        playerValues.money = data.money;
+        playerValues.autoClickers = data.autoClickers;
+        playerValues.autoClickers10 = data.autoClickers10;
+        playerValues.autoClickers100 = data.autoClickers100;
 
-				updateValues();
-			}.bind(this));
-		},
-		componentDidMount: function componentDidMount() {
-			this.loadBaseStats();
+        updateValues();
+      }.bind(this));
+    },
+    componentDidMount: function componentDidMount() {
+      this.loadBaseStats();
 
-			setInterval(function () {
-				autoClick();
+      setInterval(function () {
+        autoClick();
 
-				for (var i = 0; i < playerValues.autoClickers10; i++) {
-					console.log("in for loop");
-					doubleMoney();
-				}
-			}, 1000);
-		}
-	});
+        for (var i = 0; i < playerValues.autoClickers10; i++) {
+          console.log("in for loop");
+          doubleMoney();
+        }
+      }, 1000);
+    }
+  });
 
-	if (document.querySelector("#mainClicker")) {
-		clickerMain = ReactDOM.render(React.createElement(ClickerMainClass, { csrf: csrf }), document.querySelector("#mainClicker"));
+  if (document.querySelector("#mainClicker")) {
+    clickerMain = ReactDOM.render(React.createElement(ClickerMainClass, { csrf: csrf }), document.querySelector("#mainClicker"));
 
-		document.querySelector("#mainButton").onclick = onMainClick;
-	}
+    document.querySelector("#mainButton").onclick = onMainClick;
+  }
 };
 
 var clickerGetToken = function clickerGetToken() {
-	console.log("in clicker get token");
+  console.log("in clicker get token");
 
-	sendAjax('GET', '/getToken', null, function (result) {
-		clickerSetup(result.csrfToken);
-	});
+  sendAjax('GET', '/getToken', null, function (result) {
+    clickerSetup(result.csrfToken);
+  });
 };
 
 $(document).ready(function () {
-	console.log("in clicker ready");
+  console.log("in clicker ready");
 
-	clickerGetToken();
+  clickerGetToken();
 });
 "use strict";
 
@@ -563,108 +563,108 @@ var aboutMain = void 0;
 var AboutMainClass = void 0;
 
 var renderSpotifyMain = function renderSpotifyMain() {
-	return React.createElement(
-		"div",
-		null,
-		React.createElement("h1", { id: "getMemed" }),
-		React.createElement(
-			"button",
-			{ type: "button", id: "spotifyButton", className: "btn btn-primary btn-lg btn-block" },
-			"Click Me"
-		)
-	);
+  return React.createElement(
+    "div",
+    null,
+    React.createElement("h1", { id: "getMemed" }),
+    React.createElement(
+      "button",
+      { type: "button", id: "spotifyButton", className: "btn btn-primary btn-lg btn-block" },
+      "Click Me"
+    )
+  );
 };
 
 var renderAboutMain = function renderAboutMain() {
-	return React.createElement(
-		"div",
-		{ className: "well well-lg" },
-		React.createElement(
-			"h1",
-			null,
-			"About"
-		),
-		React.createElement(
-			"p",
-			null,
-			"This cookie-clicker inspired application is an excercise in storing and retrieving data from a Mongo database using Mongoose. The story of the game is that you found a button on the moon that when clicked gives you 1 Dollar Coin",
-			React.createElement(
-				"sup",
-				null,
-				"TM"
-			),
-			". So you must hire Moonlings to click the button for you. Thankfully for you there are nearly infintie Moonlings, and they are all eager to work for you for a small sum of 100 Dollar Coins",
-			React.createElement(
-				"sup",
-				null,
-				"TM"
-			),
-			"."
-		),
-		React.createElement(
-			"address",
-			null,
-			React.createElement(
-				"strong",
-				null,
-				"Made by Ryan Muskopf"
-			),
-			React.createElement("br", null),
-			React.createElement(
-				"a",
-				{ href: "mailto:#" },
-				"ryanjmuskopf@gmail.com"
-			)
-		)
-	);
+  return React.createElement(
+    "div",
+    { className: "well well-lg" },
+    React.createElement(
+      "h1",
+      null,
+      "About"
+    ),
+    React.createElement(
+      "p",
+      null,
+      "This cookie-clicker inspired application is an excercise in storing and retrieving data from a Mongo database using Mongoose. The story of the game is that you found a button on the moon that when clicked gives you 1 Dollar Coin",
+      React.createElement(
+        "sup",
+        null,
+        "TM"
+      ),
+      ". So you must hire Moonlings to click the button for you. Thankfully for you there are nearly infintie Moonlings, and they are all eager to work for you for a small sum of 100 Dollar Coins",
+      React.createElement(
+        "sup",
+        null,
+        "TM"
+      ),
+      "."
+    ),
+    React.createElement(
+      "address",
+      null,
+      React.createElement(
+        "strong",
+        null,
+        "Made by Ryan Muskopf"
+      ),
+      React.createElement("br", null),
+      React.createElement(
+        "a",
+        { href: "mailto:#" },
+        "ryanjmuskopf@gmail.com"
+      )
+    )
+  );
 };
 
 var clickMeme = function clickMeme() {
-	setInterval(function () {
-		document.querySelector("#getMemed").innerHTML = "CAN I USE SPOTIFY FOR MY 330 PROJECT CODY? " + document.querySelector("#getMemed").innerHTML;
-		document.querySelector('#spotifyButton').scrollIntoView();
-	}, 1);
+  setInterval(function () {
+    document.querySelector("#getMemed").innerHTML = "CAN I USE SPOTIFY FOR MY 330 PROJECT CODY? " + document.querySelector("#getMemed").innerHTML;
+    document.querySelector('#spotifyButton').scrollIntoView();
+  }, 1);
 };
 
 var spotifySetup = function spotifySetup(csrf) {
-	console.log("in spotify setup");
+  console.log("in spotify setup");
 
-	SpotifyMainClass = React.createClass({
-		displayName: "SpotifyMainClass",
+  SpotifyMainClass = React.createClass({
+    displayName: "SpotifyMainClass",
 
-		render: renderSpotifyMain
-	});
+    render: renderSpotifyMain
+  });
 
-	if (document.querySelector("#mainSpotify")) {
-		spotifyMain = ReactDOM.render(React.createElement(SpotifyMainClass, { csrf: csrf }), document.querySelector("#mainSpotify"));
+  if (document.querySelector("#mainSpotify")) {
+    spotifyMain = ReactDOM.render(React.createElement(SpotifyMainClass, { csrf: csrf }), document.querySelector("#mainSpotify"));
 
-		document.querySelector("#spotifyButton").onclick = clickMeme;
-	}
+    document.querySelector("#spotifyButton").onclick = clickMeme;
+  }
 
-	AboutMainClass = React.createClass({
-		displayName: "AboutMainClass",
+  AboutMainClass = React.createClass({
+    displayName: "AboutMainClass",
 
-		render: renderAboutMain
-	});
+    render: renderAboutMain
+  });
 
-	if (document.querySelector("#mainAbout")) {
+  if (document.querySelector("#mainAbout")) {
 
-		aboutMain = ReactDOM.render(React.createElement(AboutMainClass, { csrf: csrf }), document.querySelector("#mainAbout"));
-	}
+    aboutMain = ReactDOM.render(React.createElement(AboutMainClass, { csrf: csrf }), document.querySelector("#mainAbout"));
+  }
 };
 
 var spotifyGetToken = function spotifyGetToken() {
-	console.log("in spotify get token");
+  console.log("in spotify get token");
 
-	sendAjax('GET', '/getToken', null, function (result) {
-		spotifySetup(result.csrfToken);
-	});
+  sendAjax('GET', '/getToken', null, function (result) {
+    spotifySetup(result.csrfToken);
+  });
 };
 
 $(document).ready(function () {
-	console.log("in spotify ready");
+  console.log("in spotify ready");
 
-	spotifyGetToken();
+  spotifyGetToken();
 });
 "use strict";
 
