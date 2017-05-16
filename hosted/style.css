@@ -19,3 +19,11 @@
   margin-top: 15px;
   margin-bottom: 15px;
 }
+
+#errorAlert{
+  display: none;
+}
+
+#errorHere{
+  text-align: center;
+}

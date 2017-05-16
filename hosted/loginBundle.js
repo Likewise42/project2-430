@@ -161,6 +161,7 @@ var createLoginWindow = function createLoginWindow(csrf) {
 
     handleSubmit: handleLogin,
     render: renderLogin
+
   });
 
   ReactDOM.render(React.createElement(LoginWindow, { csrf: csrf }), document.querySelector("#content"));
@@ -222,12 +223,39 @@ $(document).ready(function () {
 'use strict';
 
 var handleError = function handleError(message) {
-  $('#errorMessage').text(message);
+  //  $('#errorMessage').text(message);
+  //	
+  //  if($('#domoMessage')){
+  //    $('#domoMessage').animate({width:'toggle'},350);
+  //    console.log('error');
+  //  }
 
-  if ($('#domoMessage')) {
-    $('#domoMessage').animate({ width: 'toggle' }, 350);
-    console.log('error');
-  }
+  console.log('error: ' + message);
+
+  document.querySelector('#errorAlert').innerHTML = message;
+  document.querySelector('#errorAlert').style.display = 'inline';
+
+  setTimeout(function () {
+    document.querySelector('#errorAlert').style.display = 'none';
+  }, 4000);
+};
+
+var renderError = function renderError() {
+  return React.createElement(
+    'div',
+    { id: 'errorAlert', className: 'alert alert-danger', role: 'alert' },
+    '...'
+  );
+};
+
+var createErrorAlert = function createErrorAlert() {
+  var ErrorAlert = React.createClass({
+    displayName: 'ErrorAlert',
+
+    render: renderError
+  });
+
+  ReactDOM.render(React.createElement(ErrorAlert, null), document.querySelector("#errorHere"));
 };
 
 var redirect = function redirect(response) {

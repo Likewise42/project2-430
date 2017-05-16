@@ -1,50 +1,51 @@
 <html lang="en">
-	<head>
-		<meta charset="utf-8"/>
-		<title>Change</title>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.6.2/remarkable.min.js"></script>
-		<link rel="shortcut icon" href="/assets/img/favicon.png"/>
-		<link rel="stylesheet" type="text/css" href="/assets/style.css"/>
-		<!--
+  <head>
+    <meta charset="utf-8"/>
+    <title>Change</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.6.2/remarkable.min.js"></script>
+    <link rel="shortcut icon" href="/assets/img/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/assets/style.css"/>
+    <!--
 <link rel="stylesheet" media="min-device-width: 400px" href="/assets/styleSmall.css" />
 <link rel="stylesheet" media="max-device-width: 401px" href="/assets/style.css" />
 -->
-	</head>
-	<body>
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#">Clicker!</a>
-				</div>
-				<div id="navbar" class="collapse navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li><a id="logoutButton" href="/logout">Logout</a></li>
-						<li><a id="logoutButton" href="/clicker">Clicker</a></li>
-						<li><a id="logoutButton" href="#">Change Password</a></li>
-						<li><a id="logoutButton" href="/about">About</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-		<!--
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Clicker!</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a id="logoutButton" href="/logout">Logout</a></li>
+            <li><a id="logoutButton" href="/clicker">Clicker</a></li>
+            <li><a id="logoutButton" href="#">Change Password</a></li>
+            <li><a id="logoutButton" href="/about">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--
 <nav><a href="/login"><img id="logo" src="/assets/img/face.png" alt="face logo"/></a>
 <div class="navlink"><a href="/logout">Log out</a></div>
 </nav>
 -->
-		<div class="container" role="main">
-			<section id="mainChange">
-			</section>
-		</div>
-		<script src="/assets/bundle.js"></script>
-	</body>
+    <div class="container" role="main">
+      <section id="mainChange"></section>
+      <section id="errorHere"></section>
+
+    </div>
+    <script src="/assets/bundle.js"></script>
+  </body>
 </html>

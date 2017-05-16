@@ -74,6 +74,7 @@ const updateValues = () =>{
   document.querySelector("#dollarCoinEle").innerHTML = `Dollar Coins: ${playerValues.money}`;
   document.querySelector("#autoClickersEle").innerHTML = `Moonlings: ${playerValues.autoClickers}`;
   document.querySelector("#doublerMachinesEle").innerHTML = `Doubler Machines: ${playerValues.autoClickers10}`;
+  document.querySelector("#autoClickers").innerHTML = `Moonlings: ${playerValues.autoClickers}`;
 
   document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
 }
@@ -137,6 +138,9 @@ const clickerSetup = function(csrf) {
 
     document.querySelector("#mainButton").onclick = onMainClick;
   }
+
+  createErrorAlert();
+
 
 };
 

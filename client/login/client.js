@@ -99,7 +99,9 @@ const renderSignup = function() {
 
       <a id="loginLink" href="/signup">Already have an account? Sign in!</a>
 
+
     </div>
+
   );
   //  <label htmlFor="username">Username: </label>
   //        <input id="user" type="text" name="username" placeholder ="username"/>
@@ -111,10 +113,13 @@ const renderSignup = function() {
   //        <input className="formSubmit" type="submit" value="Sign Up" />
 };
 
+
+
 const createLoginWindow = function(csrf) {
   const LoginWindow = React.createClass({
     handleSubmit: handleLogin,
-    render: renderLogin
+    render: renderLogin,
+
   });
 
   ReactDOM.render(
@@ -132,9 +137,9 @@ const createLoginWindow = function(csrf) {
 const createSignupWindow = function(csrf) {
   const SignupWindow = React.createClass({
     handleSubmit: handleSignup,
-    render: renderSignup
+    render: renderSignup,
   });
-
+  
   ReactDOM.render(
     <SignupWindow csrf={csrf} />,
     document.querySelector("#content")

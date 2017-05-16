@@ -53,6 +53,9 @@ const changeSetup = function(csrf) {
     );
   }
 
+  createErrorAlert();
+
+
 };
 
 const changeGetToken = () =>{

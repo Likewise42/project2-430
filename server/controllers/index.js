@@ -5,3 +5,4 @@ module.exports.Clicker = require('./Clicker.js');
 module.exports.Store = require('./Store.js');
 module.exports.Change = require('./Change.js');
 module.exports.Spotify = require('./Spotify.js');
+

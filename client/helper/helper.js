@@ -1,10 +1,38 @@
 const handleError = (message) =>{
-  $('#errorMessage').text(message);
-	
-  if($('#domoMessage')){
-    $('#domoMessage').animate({width:'toggle'},350);
-    console.log('error');
-  }
+  //  $('#errorMessage').text(message);
+  //	
+  //  if($('#domoMessage')){
+  //    $('#domoMessage').animate({width:'toggle'},350);
+  //    console.log('error');
+  //  }
+
+  console.log(`error: ${message}`);
+
+  document.querySelector('#errorAlert').innerHTML = message;
+  document.querySelector('#errorAlert').style.display = 'inline';
+
+  setTimeout(()=>{
+    document.querySelector('#errorAlert').style.display = 'none';
+  }, 4000);
+
+};
+
+const renderError = function() {
+  return(
+    <div id="errorAlert" className="alert alert-danger" role="alert">...</div>
+
+  );
+};
+
+const createErrorAlert = function() {
+  const ErrorAlert = React.createClass({
+    render: renderError,
+  });
+
+  ReactDOM.render(
+    <ErrorAlert />,
+    document.querySelector("#errorHere")
+  );
 };
 
 const redirect = (response) =>{
