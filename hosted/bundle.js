@@ -98,6 +98,8 @@ $(document).ready(function () {
 var clickerRenderer = void 0;
 var clickerMain = void 0;
 var ClickerMainClass = void 0;
+var bannerAdMain = void 0;
+var BannerAdClass = void 0;
 
 //clicker attributes:
 var playerValues = {};
@@ -162,6 +164,14 @@ var renderClickerMain = function renderClickerMain() {
   //    <label htmlFor="pass2">New Password: </label>
   //    <input id="pass2" className="form-control" type="password" name="pass2" placeholder="Retype Password"/>
   //  </div>
+};
+
+var renderBannerAd = function renderBannerAd() {
+  return React.createElement(
+    "div",
+    { className: "well" },
+    "Banner Ad"
+  );
 };
 
 var onMainClick = function onMainClick() {
@@ -255,6 +265,16 @@ var clickerSetup = function clickerSetup(csrf) {
     clickerMain = ReactDOM.render(React.createElement(ClickerMainClass, { csrf: csrf }), document.querySelector("#mainClicker"));
 
     document.querySelector("#mainButton").onclick = onMainClick;
+  }
+
+  BannerAdClass = React.createClass({
+    displayName: "BannerAdClass",
+
+    render: renderBannerAd
+  });
+
+  if (document.querySelector("#adHere")) {
+    bannerAdMain = ReactDOM.render(React.createElement(BannerAdClass, null), document.querySelector("#adHere"));
   }
 
   createErrorAlert();

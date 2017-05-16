@@ -1,6 +1,8 @@
 let clickerRenderer;
 let clickerMain;
 let ClickerMainClass;
+let bannerAdMain;
+let BannerAdClass;
 
 //clicker attributes:
 let playerValues = {};
@@ -43,6 +45,14 @@ const renderClickerMain = function() {
   //    <label htmlFor="pass2">New Password: </label>
   //    <input id="pass2" className="form-control" type="password" name="pass2" placeholder="Retype Password"/>
   //  </div>
+};
+
+const renderBannerAd = function(){
+  return(
+    <div className="well">
+      Banner Ad
+    </div>
+  )
 };
 
 const onMainClick = () =>{
@@ -139,8 +149,17 @@ const clickerSetup = function(csrf) {
     document.querySelector("#mainButton").onclick = onMainClick;
   }
 
+  BannerAdClass = React.createClass({
+    render: renderBannerAd
+  });
+  
+  if(document.querySelector("#adHere")){
+    bannerAdMain = ReactDOM.render(
+      <BannerAdClass />, document.querySelector("#adHere")
+    );
+  }
+  
   createErrorAlert();
-
 
 };
 
