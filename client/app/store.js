@@ -99,7 +99,7 @@ const buyDoublerMachine = (toBuy) =>{
   const clickerCost = 1000000000000000000000000;
 
   if((toBuy * clickerCost) > playerValues.money){
-    handleError("Not enough dollar coins. Missing "+((toBuy * clickerCost) -playerValues.money));
+    handleError("Not enough dollar coins.");
   } else {
     playerValues.autoClickers10 += toBuy;
     playerValues.money -= (toBuy * clickerCost);
