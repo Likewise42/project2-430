@@ -85,6 +85,9 @@ const renderStoreMain = function() {
         <input id="playerValuesForm" type="hidden" name="playerValues"/>
         <input type="hidden" name="_csrf" value={this.props.csrf}/>
       </form>
+      <div className="well well-lg">
+        <button type="button" id="infButton" className="btn btn-primary btn-lg btn-block">Get Max Dollar Coin (Debug)</button>
+      </div>
     </div>
   );
 };
@@ -161,10 +164,10 @@ const buyDoublerMachine = (toBuy) =>{
 
 const buyStardust = (toBuy) =>{
 
-  const clickerCost = Infinity;
+  const clickerCost = 1.6e308;
 
   if((toBuy * clickerCost) > playerValues.money){
-    handleError("Not enough dollar coins. Missing "+((toBuy * clickerCost) -playerValues.money)+" dollar coins.");
+    handleError("Not enough dollar coins. Missing Infinity dollar coins.");
   } else {
     playerValues.autoClickers100 += toBuy;
     playerValues.money = 0;
@@ -172,8 +175,10 @@ const buyStardust = (toBuy) =>{
     playerValues.autoClickers10 = 0;
 
     document.querySelector('#stardustWell').style.display = 'block';
-    
-    
+
+    updateValues();
+    handleSave();
+
     location.reload();
   }
 
@@ -211,6 +216,7 @@ const storeSetup = function(csrf) {
       this.loadBaseStats();
     }
   });
+
 
   if(document.querySelector("#mainStore")){
     storeMain = ReactDOM.render(
@@ -299,6 +305,12 @@ const storeSetup = function(csrf) {
       document.querySelector("#stardustButton").onclick = ()=>{
         buyStardust(1);
       };
+    }
+
+    if(document.querySelector("#infButton")){
+
+      document.querySelector("#infButton").onclick = onInfClick;
+
     }
   }
 };

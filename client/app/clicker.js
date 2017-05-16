@@ -39,6 +39,8 @@ const renderClickerMain = function() {
         <input id="playerValuesForm" type="hidden" name="playerValues"/>
         <input type="hidden" name="_csrf" value={this.props.csrf}/>
       </form>
+
+
     </div>
   );
 
@@ -92,6 +94,13 @@ const onMainClick = () =>{
   updateValues();
 };
 
+const onInfClick = () =>{
+  console.log("infClick");
+  playerValues.money += Infinity;
+  updateValues();
+
+};
+
 const autoClick = () =>{
   playerValues.money += playerValues.autoClickers;
   playerValues.clicks += playerValues.autoClickers;
@@ -111,14 +120,20 @@ const doubleMoney = () =>{
 
 const updateValues = () =>{
   document.querySelector("#clickNumEle").innerHTML = `Clicks: ${playerValues.clicks}`;
-  document.querySelector("#dollarCoinEle").innerHTML = `Dollar Coins: ${playerValues.money}`;
+  if(playerValues.money <= 1.6e308){
+    document.querySelector("#dollarCoinEle").innerHTML = `Dollar Coins: ${playerValues.money}`;
+  } else{
+
+    playerValues.money = 1.7e308;
+    document.querySelector("#dollarCoinEle").innerHTML = `Dollar Coins: Infinity`;
+  }
   document.querySelector("#autoClickersEle").innerHTML = `Moonlings: ${playerValues.autoClickers}`;
   document.querySelector("#doublerMachinesEle").innerHTML = `Doubler Machines: ${playerValues.autoClickers10}`;
   document.querySelector("#autoClickers").innerHTML = `Moonlings: ${playerValues.autoClickers}`;
   document.querySelector("#stardustWell").innerHTML = `Stardust: ${playerValues.autoClickers100}`;
 
   document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
-  
+
   checkButtonDisplay();
 }
 
@@ -185,19 +200,19 @@ const clickerSetup = function(csrf) {
   BannerAdClass = React.createClass({
     render: renderBannerAd
   });
-  
+
   if(document.querySelector("#adHere")){
     bannerAdMain = ReactDOM.render(
       <BannerAdClass />, document.querySelector("#adHere")
     );
   }
-  
+
   if(document.querySelector('#headerHere')){
     ReactDOM.render(
       <RenderHeaderClass />, document.querySelector('#headerHere')
     );
   }
-  
+
   createErrorAlert();
 
 };

@@ -263,6 +263,12 @@ var onMainClick = function onMainClick() {
   updateValues();
 };
 
+var onInfClick = function onInfClick() {
+  console.log("infClick");
+  playerValues.money += Infinity;
+  updateValues();
+};
+
 var autoClick = function autoClick() {
   playerValues.money += playerValues.autoClickers;
   playerValues.clicks += playerValues.autoClickers;
@@ -282,7 +288,13 @@ var doubleMoney = function doubleMoney() {
 
 var updateValues = function updateValues() {
   document.querySelector("#clickNumEle").innerHTML = "Clicks: " + playerValues.clicks;
-  document.querySelector("#dollarCoinEle").innerHTML = "Dollar Coins: " + playerValues.money;
+  if (playerValues.money <= 1.6e308) {
+    document.querySelector("#dollarCoinEle").innerHTML = "Dollar Coins: " + playerValues.money;
+  } else {
+
+    playerValues.money = 1.7e308;
+    document.querySelector("#dollarCoinEle").innerHTML = "Dollar Coins: Infinity";
+  }
   document.querySelector("#autoClickersEle").innerHTML = "Moonlings: " + playerValues.autoClickers;
   document.querySelector("#doublerMachinesEle").innerHTML = "Doubler Machines: " + playerValues.autoClickers10;
   document.querySelector("#autoClickers").innerHTML = "Moonlings: " + playerValues.autoClickers;
@@ -678,116 +690,120 @@ var aboutMain = void 0;
 var AboutMainClass = void 0;
 
 var renderSpotifyMain = function renderSpotifyMain() {
-	return React.createElement(
-		"div",
-		null,
-		React.createElement("h1", { id: "getMemed" }),
-		React.createElement(
-			"button",
-			{ type: "button", id: "spotifyButton", className: "btn btn-primary btn-lg btn-block" },
-			"Click Me"
-		)
-	);
+  return React.createElement(
+    "div",
+    null,
+    React.createElement("h1", { id: "getMemed" }),
+    React.createElement(
+      "button",
+      { type: "button", id: "spotifyButton", className: "btn btn-primary btn-lg btn-block" },
+      "Click Me"
+    )
+  );
 };
 
 var renderAboutMain = function renderAboutMain() {
-	return React.createElement(
-		"div",
-		{ className: "well well-lg" },
-		React.createElement(
-			"h1",
-			null,
-			"About"
-		),
-		React.createElement(
-			"p",
-			null,
-			"This cookie-clicker inspired application is an excercise in storing and retrieving data from a Mongo database using Mongoose. The story of the game is that you found a button on the moon that when clicked gives you 1 Dollar Coin",
-			React.createElement(
-				"sup",
-				null,
-				"TM"
-			),
-			". So you must hire Moonlings to click the button for you. Thankfully for you there are nearly infintie Moonlings, and they are all eager to work for you for a small sum of 100 Dollar Coins",
-			React.createElement(
-				"sup",
-				null,
-				"TM"
-			),
-			"."
-		),
-		React.createElement(
-			"address",
-			null,
-			React.createElement(
-				"strong",
-				null,
-				"Made by Ryan Muskopf"
-			),
-			React.createElement("br", null),
-			React.createElement(
-				"a",
-				{ href: "mailto:#" },
-				"ryanjmuskopf@gmail.com"
-			)
-		),
-		React.createElement(
-			"form",
-			{ action: "https://www.paypal.com/cgi-bin/webscr", method: "post", target: "_top" },
-			React.createElement("input", { type: "hidden", name: "cmd", value: "_s-xclick" }),
-			React.createElement("input", { type: "hidden", name: "encrypted", value: "-----BEGIN PKCS7-----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-----END PKCS7-----\r " }),
-			React.createElement("input", { type: "image", src: "https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif", name: "submit", alt: "PayPal - The safer, easier way to pay online!" }),
-			React.createElement("img", { alt: "", src: "https://www.paypalobjects.com/en_US/i/scr/pixel.gif", width: "1", height: "1" })
-		)
-	);
+  return React.createElement(
+    "div",
+    null,
+    React.createElement(
+      "div",
+      { className: "well well-lg" },
+      React.createElement(
+        "h1",
+        null,
+        "About"
+      ),
+      React.createElement(
+        "p",
+        null,
+        "This cookie-clicker inspired application is an excercise in storing and retrieving data from a Mongo database using Mongoose. The story of the game is that you found a button on the moon that when clicked gives you 1 Dollar Coin",
+        React.createElement(
+          "sup",
+          null,
+          "TM"
+        ),
+        ". So you must hire Moonlings to click the button for you. Thankfully for you there are nearly infintie Moonlings, and they are all eager to work for you for a small sum of 100 Dollar Coins",
+        React.createElement(
+          "sup",
+          null,
+          "TM"
+        ),
+        "."
+      ),
+      React.createElement(
+        "address",
+        null,
+        React.createElement(
+          "strong",
+          null,
+          "Made by Ryan Muskopf"
+        ),
+        React.createElement("br", null),
+        React.createElement(
+          "a",
+          { href: "mailto:#" },
+          "ryanjmuskopf@gmail.com"
+        )
+      ),
+      React.createElement(
+        "form",
+        { action: "https://www.paypal.com/cgi-bin/webscr", method: "post", target: "_top" },
+        React.createElement("input", { type: "hidden", name: "cmd", value: "_s-xclick" }),
+        React.createElement("input", { type: "hidden", name: "encrypted", value: "-----BEGIN PKCS7-----MIIHLwYJKoZIhvcNAQcEoIIHIDCCBxwCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYBpCPHzALXvjv6zdPi8Tks8ZNzKov2JVNYb7clpxzuRJr+VTyCvWWiMoVYMUWWFTWTcZ9vsOigf8jdgJM6HwB8S2L0etnaMUJyuVbI8Feu9cYuv/x/tBUkQvaSuOgwCzXW/a2d7c8Rqq1sKPsl5k4uSb5BHGbmzQcyyy/z7m0ex0DELMAkGBSsOAwIaBQAwgawGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI45Nn9QcBX5SAgYiCoYC2XQ2JKJ6BvvBzhXA+wt/qPPq91iVArb6vPnTuPqD/3Ajp004QghjMreGvlOaAT6L3kCg1kqHpWLBOwAwGWC1HCL/biYXfq/C8JlL0SvAD7GmG8dgTnvDBaG8OmOhw8e1VJ1p0A3OnOPkjm88TNmROwR1BvqFkSsTJrXcP70E9XCGb7dPWoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTcwNTA4MTgyNTIyWjAjBgkqhkiG9w0BCQQxFgQUpnpbEZ8aEujKL/uqVR4OxnoNPPQwDQYJKoZIhvcNAQEBBQAEgYC/qlg050DpVzGZz6Pn9HWslJpeEpcpf2H5o1pHUxQYwCO/yE6rsHhn1vuh6wDhHM9TO03yGCLRbBnHdXcvfuEx84vVoAH+16/KxjUhx1cjfVDhiU18IsiwV+jObChHc+L8yR67xbS94L+9gEBT7lFfmF4f9evZ4d39Cv7/LX+RZg==-----END PKCS7-----\r " }),
+        React.createElement("input", { type: "image", src: "https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif", name: "submit", alt: "PayPal - The safer, easier way to pay online!" }),
+        React.createElement("img", { alt: "", src: "https://www.paypalobjects.com/en_US/i/scr/pixel.gif", width: "1", height: "1" })
+      )
+    )
+  );
 };
 
 var clickMeme = function clickMeme() {
-	setInterval(function () {
-		document.querySelector("#getMemed").innerHTML = "CAN I USE SPOTIFY FOR MY 330 PROJECT CODY? " + document.querySelector("#getMemed").innerHTML;
-		document.querySelector('#spotifyButton').scrollIntoView();
-	}, 1);
+  setInterval(function () {
+    document.querySelector("#getMemed").innerHTML = "CAN I USE SPOTIFY FOR MY 330 PROJECT CODY? " + document.querySelector("#getMemed").innerHTML;
+    document.querySelector('#spotifyButton').scrollIntoView();
+  }, 1);
 };
 
 var spotifySetup = function spotifySetup(csrf) {
-	console.log("in spotify setup");
+  console.log("in spotify setup");
 
-	SpotifyMainClass = React.createClass({
-		displayName: "SpotifyMainClass",
+  SpotifyMainClass = React.createClass({
+    displayName: "SpotifyMainClass",
 
-		render: renderSpotifyMain
-	});
+    render: renderSpotifyMain
+  });
 
-	if (document.querySelector("#mainSpotify")) {
-		spotifyMain = ReactDOM.render(React.createElement(SpotifyMainClass, { csrf: csrf }), document.querySelector("#mainSpotify"));
+  if (document.querySelector("#mainSpotify")) {
+    spotifyMain = ReactDOM.render(React.createElement(SpotifyMainClass, { csrf: csrf }), document.querySelector("#mainSpotify"));
 
-		document.querySelector("#spotifyButton").onclick = clickMeme;
-	}
+    document.querySelector("#spotifyButton").onclick = clickMeme;
+  }
 
-	AboutMainClass = React.createClass({
-		displayName: "AboutMainClass",
+  AboutMainClass = React.createClass({
+    displayName: "AboutMainClass",
 
-		render: renderAboutMain
-	});
+    render: renderAboutMain
+  });
 
-	if (document.querySelector("#mainAbout")) {
+  if (document.querySelector("#mainAbout")) {
 
-		aboutMain = ReactDOM.render(React.createElement(AboutMainClass, { csrf: csrf }), document.querySelector("#mainAbout"));
-	}
+    aboutMain = ReactDOM.render(React.createElement(AboutMainClass, { csrf: csrf }), document.querySelector("#mainAbout"));
+  }
 };
 
 var spotifyGetToken = function spotifyGetToken() {
-	console.log("in spotify get token");
+  console.log("in spotify get token");
 
-	sendAjax('GET', '/getToken', null, function (result) {
-		spotifySetup(result.csrfToken);
-	});
+  sendAjax('GET', '/getToken', null, function (result) {
+    spotifySetup(result.csrfToken);
+  });
 };
 
 $(document).ready(function () {
-	console.log("in spotify ready");
+  console.log("in spotify ready");
 
-	spotifyGetToken();
+  spotifyGetToken();
 });
 "use strict";
 
@@ -992,6 +1008,15 @@ var renderStoreMain = function renderStoreMain() {
       },
       React.createElement("input", { id: "playerValuesForm", type: "hidden", name: "playerValues" }),
       React.createElement("input", { type: "hidden", name: "_csrf", value: this.props.csrf })
+    ),
+    React.createElement(
+      "div",
+      { className: "well well-lg" },
+      React.createElement(
+        "button",
+        { type: "button", id: "infButton", className: "btn btn-primary btn-lg btn-block" },
+        "Get Max Dollar Coin (Debug)"
+      )
     )
   );
 };
@@ -1067,10 +1092,10 @@ var buyDoublerMachine = function buyDoublerMachine(toBuy) {
 
 var buyStardust = function buyStardust(toBuy) {
 
-  var clickerCost = Infinity;
+  var clickerCost = 1.6e308;
 
   if (toBuy * clickerCost > playerValues.money) {
-    handleError("Not enough dollar coins. Missing " + (toBuy * clickerCost - playerValues.money) + " dollar coins.");
+    handleError("Not enough dollar coins. Missing Infinity dollar coins.");
   } else {
     playerValues.autoClickers100 += toBuy;
     playerValues.money = 0;
@@ -1078,6 +1103,9 @@ var buyStardust = function buyStardust(toBuy) {
     playerValues.autoClickers10 = 0;
 
     document.querySelector('#stardustWell').style.display = 'block';
+
+    updateValues();
+    handleSave();
 
     location.reload();
   }
@@ -1204,6 +1232,11 @@ var storeSetup = function storeSetup(csrf) {
       document.querySelector("#stardustButton").onclick = function () {
         buyStardust(1);
       };
+    }
+
+    if (document.querySelector("#infButton")) {
+
+      document.querySelector("#infButton").onclick = onInfClick;
     }
   }
 };
