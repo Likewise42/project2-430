@@ -69,7 +69,7 @@ var RenderHeaderClass = React.createClass({
             <ul className="nav navbar-nav">
               <li><a id="logoutButton" href="/logout">Logout</a></li>
               <li><a id="logoutButton" href="/clicker">Clicker</a></li>
-              <li><a id="logoutButton" href="#">Change Password</a></li>
+              <li><a id="logoutButton" href="/change">Change Password</a></li>
               <li><a id="logoutButton" href="/about">About</a></li>
             </ul>
           </div>
@@ -78,6 +78,8 @@ var RenderHeaderClass = React.createClass({
     );
   }
 });
+
+
 
 const renderBannerAd = function(){
   return(

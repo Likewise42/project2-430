@@ -228,7 +228,7 @@ var RenderHeaderClass = React.createClass({
               null,
               React.createElement(
                 "a",
-                { id: "logoutButton", href: "#" },
+                { id: "logoutButton", href: "/change" },
                 "Change Password"
               )
             ),
