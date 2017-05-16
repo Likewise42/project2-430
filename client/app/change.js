@@ -54,7 +54,7 @@ const changeSetup = function(csrf) {
   }
 
   createErrorAlert();
-
+  createSuccessAlert();
 
 };
 

@@ -171,6 +171,7 @@ const setup = function(csrf){
   });
 
   createLoginWindow(csrf);
+  createErrorAlert();
 };
 
 const getToken = () =>{

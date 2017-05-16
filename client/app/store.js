@@ -132,7 +132,7 @@ const storeSetup = function(csrf) {
         playerValues.autoClickers10 = data.autoClickers10;
         playerValues.autoClickers100 = data.autoClickers100;
 
-        updateValuesStore();
+        updateValues();
       }.bind(this));
     },
     componentDidMount: function(){

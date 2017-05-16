@@ -89,7 +89,7 @@ const handlePassUpdate = (e) =>{
   e.preventDefault();
 
   sendAjax('POST', $("#updateForm").attr("action"), $("#updateForm").serialize(), function(){
-    console.log("Update Successful!");
+    handleSuccess("Update Successful!");
   });
 
   return false;

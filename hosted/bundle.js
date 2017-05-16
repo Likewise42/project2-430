@@ -77,6 +77,7 @@ var changeSetup = function changeSetup(csrf) {
   }
 
   createErrorAlert();
+  createSuccessAlert();
 };
 
 var changeGetToken = function changeGetToken() {
@@ -207,7 +208,7 @@ var handlePassUpdate = function handlePassUpdate(e) {
   e.preventDefault();
 
   sendAjax('POST', $("#updateForm").attr("action"), $("#updateForm").serialize(), function () {
-    console.log("Update Successful!");
+    handleSuccess("Update Successful!");
   });
 
   return false;
@@ -917,7 +918,7 @@ var storeSetup = function storeSetup(csrf) {
         playerValues.autoClickers10 = data.autoClickers10;
         playerValues.autoClickers100 = data.autoClickers100;
 
-        updateValuesStore();
+        updateValues();
       }.bind(this));
     },
     componentDidMount: function componentDidMount() {
@@ -1035,18 +1036,35 @@ var handleError = function handleError(message) {
 
   document.querySelector('#errorAlert').innerHTML = message;
   document.querySelector('#errorAlert').style.display = 'inline';
+  if (document.querySelector('#successHere')) {
+    document.querySelector('#successAlert').style.display = 'none';
+  }
 
   setTimeout(function () {
     document.querySelector('#errorAlert').style.display = 'none';
   }, 4000);
 };
 
+var handleSuccess = function handleSuccess(message) {
+  console.log('Success: ' + message);
+
+  document.querySelector('#successAlert').innerHTML = message;
+  document.querySelector('#successAlert').style.display = 'inline';
+  if (document.querySelector('#errorHere')) {
+    document.querySelector('#errorAlert').style.display = 'none';
+  }
+
+  setTimeout(function () {
+    document.querySelector('#successAlert').style.display = 'none';
+  }, 4000);
+};
+
 var renderError = function renderError() {
-  return React.createElement(
-    'div',
-    { id: 'errorAlert', className: 'alert alert-danger', role: 'alert' },
-    '...'
-  );
+  return React.createElement('div', { id: 'errorAlert', className: 'alert alert-danger', role: 'alert' });
+};
+
+var renderSuccess = function renderSuccess() {
+  return React.createElement('div', { id: 'successAlert', className: 'alert alert-success', role: 'alert' });
 };
 
 var createErrorAlert = function createErrorAlert() {
@@ -1056,7 +1074,21 @@ var createErrorAlert = function createErrorAlert() {
     render: renderError
   });
 
-  ReactDOM.render(React.createElement(ErrorAlert, null), document.querySelector("#errorHere"));
+  if (document.querySelector('#errorHere')) {
+    ReactDOM.render(React.createElement(ErrorAlert, null), document.querySelector("#errorHere"));
+  }
+};
+
+var createSuccessAlert = function createSuccessAlert() {
+  var SuccessAlert = React.createClass({
+    displayName: 'SuccessAlert',
+
+    render: renderSuccess
+  });
+  if (document.querySelector('#successHere')) {
+
+    ReactDOM.render(React.createElement(SuccessAlert, null), document.querySelector("#successHere"));
+  }
 };
 
 var redirect = function redirect(response) {

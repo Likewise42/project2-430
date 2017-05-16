@@ -27,3 +27,11 @@
 #errorHere{
   text-align: center;
 }
+
+#successAlert{
+  display: none;
+}
+
+#successHere{
+  text-align: center;
+}
