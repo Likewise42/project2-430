@@ -35,3 +35,7 @@
 #successHere{
   text-align: center;
 }
+
+.auto{
+  display: none;
+}

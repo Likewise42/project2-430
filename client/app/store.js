@@ -13,6 +13,9 @@ playerValues.autoClickers100 = 0;
 const renderStoreMain = function() {
   return(
     <div>
+      <div id="stardustWell" className="well auto">
+        Stardust: 0
+      </div>
       <div className="well well-lg">
         <h1 id="autoClickers">Moonlings: 0</h1>
         <h4>Moonlings cost 100 dollar coins each</h4>
@@ -21,48 +24,54 @@ const renderStoreMain = function() {
             <button type="button" id="auto1Button" className="btn btn-primary">Buy 1 Moonling</button>
           </div>
           <div className="col-sm-4">
-            <button type="button" id="auto10Button" className="btn btn-primary">Buy 10 Moonlings</button>
+            <button type="button" id="auto10Button" className="btn btn-primary auto">Buy 10 Moonlings</button>
           </div>
           <div className="col-sm-4">
-            <button type="button" id="auto100Button" className="btn btn-primary">Buy 100 Moonlings</button>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-sm-4">
-            <button type="button" id="auto10000Button" className="btn btn-primary">Buy 10k Autoclicker</button>
-          </div>
-          <div className="col-sm-4">
-            <button type="button" id="auto1000000Button" className="btn btn-primary">Buy 1m Moonlings</button>
-          </div>
-          <div className="col-sm-4">
-            <button type="button" id="auto100000000Button" className="btn btn-primary">Buy 100m Moonlings</button>
+            <button type="button" id="auto100Button" className="btn btn-primary auto">Buy 100 Moonlings</button>
           </div>
         </div>
         <div className="row">
           <div className="col-sm-4">
-            <button type="button" id="auto10000000000Button" className="btn btn-primary">Buy 10b Autoclicker</button>
+            <button type="button" id="auto10000Button" className="btn btn-primary auto">Buy 10k Autoclicker</button>
           </div>
           <div className="col-sm-4">
-            <button type="button" id="auto1000000000000Button" className="btn btn-primary">Buy 1t Moonlings</button>
+            <button type="button" id="auto1000000Button" className="btn btn-primary auto">Buy 1m Moonlings</button>
           </div>
           <div className="col-sm-4">
-            <button type="button" id="auto100000000000000Button" className="btn btn-primary">Buy 100t Moonlings</button>
+            <button type="button" id="auto100000000Button" className="btn btn-primary auto">Buy 100m Moonlings</button>
           </div>
         </div>
         <div className="row">
           <div className="col-sm-4">
-            <button type="button" id="auto10000000000000000Button" className="btn btn-primary">Buy 10quad Autoclicker</button>
+            <button type="button" id="auto10000000000Button" className="btn btn-primary auto">Buy 10b Autoclicker</button>
           </div>
           <div className="col-sm-4">
-            <button type="button" id="auto1000000000000000000Button" className="btn btn-primary">Buy 1quint Moonlings</button>
+            <button type="button" id="auto1000000000000Button" className="btn btn-primary auto">Buy 1t Moonlings</button>
           </div>
           <div className="col-sm-4">
-            <button type="button" id="auto100000000000000000000Button" className="btn btn-primary">Buy 100quint Moonlings</button>
+            <button type="button" id="auto100000000000000Button" className="btn btn-primary auto">Buy 100t Moonlings</button>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-sm-4">
+            <button type="button" id="auto10000000000000000Button" className="btn btn-primary auto">Buy 10quad Autoclicker</button>
+          </div>
+          <div className="col-sm-4">
+            <button type="button" id="auto1000000000000000000Button" className="btn btn-primary auto">Buy 1quint Moonlings</button>
+          </div>
+          <div className="col-sm-4">
+            <button type="button" id="auto100000000000000000000Button" className="btn btn-primary auto">Buy 100quint Moonlings</button>
           </div>
         </div>
         <div className="row">
           <div className="col-xs-12">
-            <button type="button" id="doublerButton" className="btn btn-primary">Buy a Doubler Machine</button>
+            <button type="button" id="doublerButton" className="btn btn-primary auto">Buy a Doubler Machine</button>
+          </div>
+        </div>
+        <div id="stardustMenu" className="row auto">
+          <div className="col-xs-12">
+            <p>Warning! Buying Stardust requires Infinite Dollar Coins and all of your Moonlings and Doubler Machines!</p>
+            <button type="button" id="stardustButton" className="btn btn-primary">Buy Stardust</button>
           </div>
         </div>
       </div>
@@ -80,12 +89,54 @@ const renderStoreMain = function() {
   );
 };
 
+const checkButtonDisplay = () => {
+  if(playerValues.autoClickers >= 1){
+    document.querySelector('#auto10Button').style.display = 'inline-block';
+  }if(playerValues.autoClickers >= 10){
+    document.querySelector('#auto100Button').style.display = 'inline-block';
+  }if(playerValues.autoClickers >= 100){
+    document.querySelector('#auto10000Button').style.display = 'inline-block';
+  }if(playerValues.autoClickers >= 10000){
+    document.querySelector('#auto1000000Button').style.display = 'inline-block';
+  }if(playerValues.autoClickers >= 1000000){
+    document.querySelector('#auto100000000Button').style.display = 'inline-block';
+  }if(playerValues.autoClickers >= 100000000){
+    document.querySelector('#auto10000000000Button').style.display = 'inline-block';
+  }if(playerValues.autoClickers >= 10000000000){
+    document.querySelector('#auto1000000000000Button').style.display = 'inline-block';
+  }if(playerValues.autoClickers >= 1000000000000){
+    document.querySelector('#auto100000000000000Button').style.display = 'inline-block';
+  }if(playerValues.autoClickers >= 100000000000000){
+    document.querySelector('#auto10000000000000000Button').style.display = 'inline-block';
+  }if(playerValues.autoClickers >= 10000000000000000){
+    document.querySelector('#auto1000000000000000000Button').style.display = 'inline-block';
+  }if(playerValues.autoClickers >= 1000000000000000000){
+    document.querySelector('#auto100000000000000000000Button').style.display = 'inline-block';
+  }
+
+  //doubler
+  if(playerValues.autoClickers >= 100000000000000000000){
+    document.querySelector('#doublerButton').style.display = 'inline-block';
+  }
+
+  //stardust
+  if(playerValues.autoClickers10 >= 1){
+    document.querySelector('#stardustMenu').style.display = 'inline-block';
+  }
+
+  //stardust
+  if(playerValues.autoClickers100 >= 1){
+    document.querySelector('#stardustWell').style.display = 'block';
+  }
+
+}
+
 const buyAutoClicker = (toBuy) =>{
 
   const clickerCost = 100;
 
   if((toBuy * clickerCost) > playerValues.money){
-    handleError("Not enough dollar coins. Missing "+((toBuy * clickerCost) -playerValues.money));
+    handleError("Not enough dollar coins. Missing "+((toBuy * clickerCost) -playerValues.money)+" dollar coins.");
   } else {
     playerValues.autoClickers += toBuy;
     playerValues.money -= (toBuy * clickerCost);
@@ -103,6 +154,27 @@ const buyDoublerMachine = (toBuy) =>{
   } else {
     playerValues.autoClickers10 += toBuy;
     playerValues.money -= (toBuy * clickerCost);
+  }
+
+  updateValues();
+};
+
+const buyStardust = (toBuy) =>{
+
+  const clickerCost = Infinity;
+
+  if((toBuy * clickerCost) > playerValues.money){
+    handleError("Not enough dollar coins. Missing "+((toBuy * clickerCost) -playerValues.money)+" dollar coins.");
+  } else {
+    playerValues.autoClickers100 += toBuy;
+    playerValues.money = 0;
+    playerValues.autoClickers = 0;
+    playerValues.autoClickers10 = 0;
+
+    document.querySelector('#stardustWell').style.display = 'block';
+    
+    
+    location.reload();
   }
 
   updateValues();
@@ -222,9 +294,13 @@ const storeSetup = function(csrf) {
         buyDoublerMachine(1);
       };
     }
+
+    if(document.querySelector("#stardustButton")){
+      document.querySelector("#stardustButton").onclick = ()=>{
+        buyStardust(1);
+      };
+    }
   }
-
-
 };
 
 const storeGetToken = () =>{

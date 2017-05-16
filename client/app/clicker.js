@@ -3,6 +3,7 @@ let clickerMain;
 let ClickerMainClass;
 let bannerAdMain;
 let BannerAdClass;
+let headerMain;
 
 //clicker attributes:
 let playerValues = {};
@@ -47,6 +48,35 @@ const renderClickerMain = function() {
   //  </div>
 };
 
+//taken from http://magic.reactjs.net/htmltojsx.htm
+var RenderHeaderClass = React.createClass({
+  render: function() {
+    return (
+      <nav className="navbar navbar-inverse navbar-fixed-top">
+        <div className="container">
+          <div className="navbar-header">
+            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span className="sr-only">Toggle navigation</span>
+              <span className="icon-bar" />
+              <span className="icon-bar" />
+              <span className="icon-bar" />
+            </button>
+            <a className="navbar-brand" href="#">Clicker!</a>
+          </div>
+          <div id="navbar" className="collapse navbar-collapse">
+            <ul className="nav navbar-nav">
+              <li><a id="logoutButton" href="/logout">Logout</a></li>
+              <li><a id="logoutButton" href="/clicker">Clicker</a></li>
+              <li><a id="logoutButton" href="#">Change Password</a></li>
+              <li><a id="logoutButton" href="/about">About</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    );
+  }
+});
+
 const renderBannerAd = function(){
   return(
     <div className="well">
@@ -85,8 +115,11 @@ const updateValues = () =>{
   document.querySelector("#autoClickersEle").innerHTML = `Moonlings: ${playerValues.autoClickers}`;
   document.querySelector("#doublerMachinesEle").innerHTML = `Doubler Machines: ${playerValues.autoClickers10}`;
   document.querySelector("#autoClickers").innerHTML = `Moonlings: ${playerValues.autoClickers}`;
+  document.querySelector("#stardustWell").innerHTML = `Stardust: ${playerValues.autoClickers100}`;
 
   document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
+  
+  checkButtonDisplay();
 }
 
 const handleSave = () =>{
@@ -156,6 +189,12 @@ const clickerSetup = function(csrf) {
   if(document.querySelector("#adHere")){
     bannerAdMain = ReactDOM.render(
       <BannerAdClass />, document.querySelector("#adHere")
+    );
+  }
+  
+  if(document.querySelector('#headerHere')){
+    ReactDOM.render(
+      <RenderHeaderClass />, document.querySelector('#headerHere')
     );
   }
   

@@ -100,6 +100,7 @@ var clickerMain = void 0;
 var ClickerMainClass = void 0;
 var bannerAdMain = void 0;
 var BannerAdClass = void 0;
+var headerMain = void 0;
 
 //clicker attributes:
 var playerValues = {};
@@ -166,6 +167,87 @@ var renderClickerMain = function renderClickerMain() {
   //  </div>
 };
 
+//taken from http://magic.reactjs.net/htmltojsx.htm
+var RenderHeaderClass = React.createClass({
+  displayName: "RenderHeaderClass",
+
+  render: function render() {
+    return React.createElement(
+      "nav",
+      { className: "navbar navbar-inverse navbar-fixed-top" },
+      React.createElement(
+        "div",
+        { className: "container" },
+        React.createElement(
+          "div",
+          { className: "navbar-header" },
+          React.createElement(
+            "button",
+            { type: "button", className: "navbar-toggle collapsed", "data-toggle": "collapse", "data-target": "#navbar", "aria-expanded": "false", "aria-controls": "navbar" },
+            React.createElement(
+              "span",
+              { className: "sr-only" },
+              "Toggle navigation"
+            ),
+            React.createElement("span", { className: "icon-bar" }),
+            React.createElement("span", { className: "icon-bar" }),
+            React.createElement("span", { className: "icon-bar" })
+          ),
+          React.createElement(
+            "a",
+            { className: "navbar-brand", href: "#" },
+            "Clicker!"
+          )
+        ),
+        React.createElement(
+          "div",
+          { id: "navbar", className: "collapse navbar-collapse" },
+          React.createElement(
+            "ul",
+            { className: "nav navbar-nav" },
+            React.createElement(
+              "li",
+              null,
+              React.createElement(
+                "a",
+                { id: "logoutButton", href: "/logout" },
+                "Logout"
+              )
+            ),
+            React.createElement(
+              "li",
+              null,
+              React.createElement(
+                "a",
+                { id: "logoutButton", href: "/clicker" },
+                "Clicker"
+              )
+            ),
+            React.createElement(
+              "li",
+              null,
+              React.createElement(
+                "a",
+                { id: "logoutButton", href: "#" },
+                "Change Password"
+              )
+            ),
+            React.createElement(
+              "li",
+              null,
+              React.createElement(
+                "a",
+                { id: "logoutButton", href: "/about" },
+                "About"
+              )
+            )
+          )
+        )
+      )
+    );
+  }
+});
+
 var renderBannerAd = function renderBannerAd() {
   return React.createElement(
     "div",
@@ -204,8 +286,11 @@ var updateValues = function updateValues() {
   document.querySelector("#autoClickersEle").innerHTML = "Moonlings: " + playerValues.autoClickers;
   document.querySelector("#doublerMachinesEle").innerHTML = "Doubler Machines: " + playerValues.autoClickers10;
   document.querySelector("#autoClickers").innerHTML = "Moonlings: " + playerValues.autoClickers;
+  document.querySelector("#stardustWell").innerHTML = "Stardust: " + playerValues.autoClickers100;
 
   document.querySelector("#playerValuesForm").value = JSON.stringify(playerValues);
+
+  checkButtonDisplay();
 };
 
 var handleSave = function handleSave() {
@@ -275,6 +360,10 @@ var clickerSetup = function clickerSetup(csrf) {
 
   if (document.querySelector("#adHere")) {
     bannerAdMain = ReactDOM.render(React.createElement(BannerAdClass, null), document.querySelector("#adHere"));
+  }
+
+  if (document.querySelector('#headerHere')) {
+    ReactDOM.render(React.createElement(RenderHeaderClass, null), document.querySelector('#headerHere'));
   }
 
   createErrorAlert();
@@ -720,6 +809,11 @@ var renderStoreMain = function renderStoreMain() {
     null,
     React.createElement(
       "div",
+      { id: "stardustWell", className: "well auto" },
+      "Stardust: 0"
+    ),
+    React.createElement(
+      "div",
       { className: "well well-lg" },
       React.createElement(
         "h1",
@@ -748,7 +842,7 @@ var renderStoreMain = function renderStoreMain() {
           { className: "col-sm-4" },
           React.createElement(
             "button",
-            { type: "button", id: "auto10Button", className: "btn btn-primary" },
+            { type: "button", id: "auto10Button", className: "btn btn-primary auto" },
             "Buy 10 Moonlings"
           )
         ),
@@ -757,7 +851,7 @@ var renderStoreMain = function renderStoreMain() {
           { className: "col-sm-4" },
           React.createElement(
             "button",
-            { type: "button", id: "auto100Button", className: "btn btn-primary" },
+            { type: "button", id: "auto100Button", className: "btn btn-primary auto" },
             "Buy 100 Moonlings"
           )
         )
@@ -770,7 +864,7 @@ var renderStoreMain = function renderStoreMain() {
           { className: "col-sm-4" },
           React.createElement(
             "button",
-            { type: "button", id: "auto10000Button", className: "btn btn-primary" },
+            { type: "button", id: "auto10000Button", className: "btn btn-primary auto" },
             "Buy 10k Autoclicker"
           )
         ),
@@ -779,7 +873,7 @@ var renderStoreMain = function renderStoreMain() {
           { className: "col-sm-4" },
           React.createElement(
             "button",
-            { type: "button", id: "auto1000000Button", className: "btn btn-primary" },
+            { type: "button", id: "auto1000000Button", className: "btn btn-primary auto" },
             "Buy 1m Moonlings"
           )
         ),
@@ -788,7 +882,7 @@ var renderStoreMain = function renderStoreMain() {
           { className: "col-sm-4" },
           React.createElement(
             "button",
-            { type: "button", id: "auto100000000Button", className: "btn btn-primary" },
+            { type: "button", id: "auto100000000Button", className: "btn btn-primary auto" },
             "Buy 100m Moonlings"
           )
         )
@@ -801,7 +895,7 @@ var renderStoreMain = function renderStoreMain() {
           { className: "col-sm-4" },
           React.createElement(
             "button",
-            { type: "button", id: "auto10000000000Button", className: "btn btn-primary" },
+            { type: "button", id: "auto10000000000Button", className: "btn btn-primary auto" },
             "Buy 10b Autoclicker"
           )
         ),
@@ -810,7 +904,7 @@ var renderStoreMain = function renderStoreMain() {
           { className: "col-sm-4" },
           React.createElement(
             "button",
-            { type: "button", id: "auto1000000000000Button", className: "btn btn-primary" },
+            { type: "button", id: "auto1000000000000Button", className: "btn btn-primary auto" },
             "Buy 1t Moonlings"
           )
         ),
@@ -819,7 +913,7 @@ var renderStoreMain = function renderStoreMain() {
           { className: "col-sm-4" },
           React.createElement(
             "button",
-            { type: "button", id: "auto100000000000000Button", className: "btn btn-primary" },
+            { type: "button", id: "auto100000000000000Button", className: "btn btn-primary auto" },
             "Buy 100t Moonlings"
           )
         )
@@ -832,7 +926,7 @@ var renderStoreMain = function renderStoreMain() {
           { className: "col-sm-4" },
           React.createElement(
             "button",
-            { type: "button", id: "auto10000000000000000Button", className: "btn btn-primary" },
+            { type: "button", id: "auto10000000000000000Button", className: "btn btn-primary auto" },
             "Buy 10quad Autoclicker"
           )
         ),
@@ -841,7 +935,7 @@ var renderStoreMain = function renderStoreMain() {
           { className: "col-sm-4" },
           React.createElement(
             "button",
-            { type: "button", id: "auto1000000000000000000Button", className: "btn btn-primary" },
+            { type: "button", id: "auto1000000000000000000Button", className: "btn btn-primary auto" },
             "Buy 1quint Moonlings"
           )
         ),
@@ -850,7 +944,7 @@ var renderStoreMain = function renderStoreMain() {
           { className: "col-sm-4" },
           React.createElement(
             "button",
-            { type: "button", id: "auto100000000000000000000Button", className: "btn btn-primary" },
+            { type: "button", id: "auto100000000000000000000Button", className: "btn btn-primary auto" },
             "Buy 100quint Moonlings"
           )
         )
@@ -863,8 +957,26 @@ var renderStoreMain = function renderStoreMain() {
           { className: "col-xs-12" },
           React.createElement(
             "button",
-            { type: "button", id: "doublerButton", className: "btn btn-primary" },
+            { type: "button", id: "doublerButton", className: "btn btn-primary auto" },
             "Buy a Doubler Machine"
+          )
+        )
+      ),
+      React.createElement(
+        "div",
+        { id: "stardustMenu", className: "row auto" },
+        React.createElement(
+          "div",
+          { className: "col-xs-12" },
+          React.createElement(
+            "p",
+            null,
+            "Warning! Buying Stardust requires Infinite Dollar Coins and all of your Moonlings and Doubler Machines!"
+          ),
+          React.createElement(
+            "button",
+            { type: "button", id: "stardustButton", className: "btn btn-primary" },
+            "Buy Stardust"
           )
         )
       )
@@ -884,12 +996,53 @@ var renderStoreMain = function renderStoreMain() {
   );
 };
 
+var checkButtonDisplay = function checkButtonDisplay() {
+  if (playerValues.autoClickers >= 1) {
+    document.querySelector('#auto10Button').style.display = 'inline-block';
+  }if (playerValues.autoClickers >= 10) {
+    document.querySelector('#auto100Button').style.display = 'inline-block';
+  }if (playerValues.autoClickers >= 100) {
+    document.querySelector('#auto10000Button').style.display = 'inline-block';
+  }if (playerValues.autoClickers >= 10000) {
+    document.querySelector('#auto1000000Button').style.display = 'inline-block';
+  }if (playerValues.autoClickers >= 1000000) {
+    document.querySelector('#auto100000000Button').style.display = 'inline-block';
+  }if (playerValues.autoClickers >= 100000000) {
+    document.querySelector('#auto10000000000Button').style.display = 'inline-block';
+  }if (playerValues.autoClickers >= 10000000000) {
+    document.querySelector('#auto1000000000000Button').style.display = 'inline-block';
+  }if (playerValues.autoClickers >= 1000000000000) {
+    document.querySelector('#auto100000000000000Button').style.display = 'inline-block';
+  }if (playerValues.autoClickers >= 100000000000000) {
+    document.querySelector('#auto10000000000000000Button').style.display = 'inline-block';
+  }if (playerValues.autoClickers >= 10000000000000000) {
+    document.querySelector('#auto1000000000000000000Button').style.display = 'inline-block';
+  }if (playerValues.autoClickers >= 1000000000000000000) {
+    document.querySelector('#auto100000000000000000000Button').style.display = 'inline-block';
+  }
+
+  //doubler
+  if (playerValues.autoClickers >= 100000000000000000000) {
+    document.querySelector('#doublerButton').style.display = 'inline-block';
+  }
+
+  //stardust
+  if (playerValues.autoClickers10 >= 1) {
+    document.querySelector('#stardustMenu').style.display = 'inline-block';
+  }
+
+  //stardust
+  if (playerValues.autoClickers100 >= 1) {
+    document.querySelector('#stardustWell').style.display = 'block';
+  }
+};
+
 var buyAutoClicker = function buyAutoClicker(toBuy) {
 
   var clickerCost = 100;
 
   if (toBuy * clickerCost > playerValues.money) {
-    handleError("Not enough dollar coins. Missing " + (toBuy * clickerCost - playerValues.money));
+    handleError("Not enough dollar coins. Missing " + (toBuy * clickerCost - playerValues.money) + " dollar coins.");
   } else {
     playerValues.autoClickers += toBuy;
     playerValues.money -= toBuy * clickerCost;
@@ -907,6 +1060,26 @@ var buyDoublerMachine = function buyDoublerMachine(toBuy) {
   } else {
     playerValues.autoClickers10 += toBuy;
     playerValues.money -= toBuy * clickerCost;
+  }
+
+  updateValues();
+};
+
+var buyStardust = function buyStardust(toBuy) {
+
+  var clickerCost = Infinity;
+
+  if (toBuy * clickerCost > playerValues.money) {
+    handleError("Not enough dollar coins. Missing " + (toBuy * clickerCost - playerValues.money) + " dollar coins.");
+  } else {
+    playerValues.autoClickers100 += toBuy;
+    playerValues.money = 0;
+    playerValues.autoClickers = 0;
+    playerValues.autoClickers10 = 0;
+
+    document.querySelector('#stardustWell').style.display = 'block';
+
+    location.reload();
   }
 
   updateValues();
@@ -1024,6 +1197,12 @@ var storeSetup = function storeSetup(csrf) {
     if (document.querySelector("#doublerButton")) {
       document.querySelector("#doublerButton").onclick = function () {
         buyDoublerMachine(1);
+      };
+    }
+
+    if (document.querySelector("#stardustButton")) {
+      document.querySelector("#stardustButton").onclick = function () {
+        buyStardust(1);
       };
     }
   }
