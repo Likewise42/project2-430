@@ -85,9 +85,6 @@ const renderStoreMain = function() {
         <input id="playerValuesForm" type="hidden" name="playerValues"/>
         <input type="hidden" name="_csrf" value={this.props.csrf}/>
       </form>
-      <div className="well well-lg">
-        <button type="button" id="infButton" className="btn btn-primary btn-lg btn-block">Get Max Dollar Coin (Debug)</button>
-      </div>
     </div>
   );
 };

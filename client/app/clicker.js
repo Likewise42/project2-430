@@ -63,7 +63,7 @@ var RenderHeaderClass = React.createClass({
               <span className="icon-bar" />
               <span className="icon-bar" />
             </button>
-            <a className="navbar-brand" href="#">Clicker!</a>
+            <a className="navbar-brand" href="/clicker">Mega Moonlings</a>
           </div>
           <div id="navbar" className="collapse navbar-collapse">
             <ul className="nav navbar-nav">
